@@ -1,38 +1,26 @@
 {
+  "name": "grid",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
-    "@headlessui/tailwindcss": "^0.1.2",
-    "@heroicons/react": "^2.0.16",
-    "@tailwindcss/forms": "^0.5.3",
-    "@upstash/ratelimit": "^0.3.8",
-    "@upstash/redis": "^1.19.1",
-    "@vercel/analytics": "^0.1.11",
-    "framer-motion": "^8.2.4",
-    "next": "^13.4.4",
-    "react": "^18.2.0",
-    "react-compare-slider": "^2.2.0",
-    "react-countup": "^6.4.0",
-    "react-dom": "^18.2.0",
-    "react-uploader": "^3.10.0",
-    "react-use-measure": "^2.1.1",
-    "replicate": "^0.16.0",
-    "request-ip": "^3.3.0",
-    "uploader": "^3.9.0"
-  },
-  "devDependencies": {
-    "@types/node": "18.11.3",
-    "@types/react": "18.0.21",
-    "@types/react-dom": "18.0.6",
-    "@types/request-ip": "^0.0.37",
-    "autoprefixer": "^10.4.12",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.4",
-    "typescript": "4.9.4"
+    "autoprefixer": "10.4.14",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.13",
+    "lucide-react": "^0.265.0",
+    "next": "13.4.13",
+    "postcss": "8.4.27",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "3.3.3",
+    "tailwindcss-animate": "^1.0.6"
   }
 }
