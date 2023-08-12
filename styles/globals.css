@@ -6,11 +6,11 @@
 
 @media (min-width: 400px) {
   .background-gradient::before {
-    background: radial-gradient(
+    /* background: radial-gradient(
       80% 50% at 50% 50%,
-      rgba(222, 36, 175, 0.376) 0%,
-      rgba(37, 38, 44, 0) 100%
-    );
+      #027CD5 20%,
+       #FFDE14 100%
+    ); */
     z-index: -10;
     content: "";
     position: absolute;

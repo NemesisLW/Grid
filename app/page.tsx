@@ -7,19 +7,10 @@ import SquigglyLines from "../components/SquigglyLines";
 export default function HomePage() {
   return (
     <div>
-      <p className="p-2 bg-orange-500 text-white font-medium text-center">For a research student like me, running this website is pretty expensive. You can support me on <a className="underline" href="https://www.buymeacoffee.com/naklecha" target="_blank">BuyMeACoffee</a> &lt;3</p>
       <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen background-gradient">
         <Header />
         <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20">
-          <a
-            href="https://replicate.com/naklecha/fashion-ai"
-            target="_blank"
-            rel="noreferrer"
-            className="border border-gray-700 rounded-lg py-2 px-4 text-gray-400 text-sm mb-5 transition duration-300 ease-in-out"
-          >
-            Are you a dev? Try the API on{" "}
-            <span className="text-pink-500">Replicate</span>
-          </a>
+          
           <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
             Modify clothing{" "}
             <span className="relative whitespace-nowrap text-pink-500">

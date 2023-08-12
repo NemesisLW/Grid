@@ -27,7 +27,7 @@ const options = {
   editor: { images: { crop: false } },
   styles: {
     colors: {
-      primary: "#2563EB", // Primary buttons & links
+      primary: "#FFDE14", // Primary buttons & links
       error: "#d23f4d", // Error messages
       shade100: "#fff", // Standard text
       shade200: "#fffe", // Secondary button text
@@ -102,9 +102,6 @@ export default function DreamPage() {
 
   return (
     <div>
-
-      <p className="p-2 bg-orange-500 text-white font-medium text-center">For a research student like me, running this website is pretty expensive. You can support me on <a className="underline" href="https://www.buymeacoffee.com/naklecha" target="_blank">BuyMeACoffee</a> &lt;3</p>
-
       <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
         <Header />
         <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-4 sm:mb-0 mb-8">
