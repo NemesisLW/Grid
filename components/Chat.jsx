@@ -48,7 +48,7 @@ const Chat = () => {
 
                 <p className="leading-relaxed">
                   <span className="block font-bold text-slate-800">
-                    {message.role === "user" ? "Onichan" : "Waifu"}
+                    {message.role === "user" ? "You" : "Assistant"}
                   </span>
                   {message.content}
                 </p>
