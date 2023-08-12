@@ -43,15 +43,15 @@ const options = {
 };
 
 export default function DreamPage() {
-  const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
-  const [maskImage, setMaskImage] = useState<string | null>(null);
-  const [maskOnImage, setMaskOnImage] = useState<string | null>(null);
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
-  const [error, setError] = useState<boolean | null>(false);
-  const [photoName, setPhotoName] = useState<string | null>(null);
-  const [theme, setTheme] = useState<themeType>("Top Wear");
+  const [originalPhoto, setOriginalPhoto] = useState(null);
+  const [maskImage, setMaskImage] = useState(null);
+  const [maskOnImage, setMaskOnImage] = useState(null);
+  const [generatedImage, setGeneratedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [restoredLoaded, setRestoredLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const [photoName, setPhotoName] = useState(null);
+  const [theme, setTheme] = useState("Top Wear");
   const [prompt, setPrompt] = useState("a black shirt");
 
   const UploadDropZone = () => (
@@ -70,7 +70,7 @@ export default function DreamPage() {
     />
   );
 
-  async function generatePhoto(fileUrl: string) {
+  async function generatePhoto(fileUrl) {
     await new Promise((resolve) => setTimeout(resolve, 200));
     setLoading(true);
     const res = await fetch("/generate", {
@@ -96,7 +96,7 @@ export default function DreamPage() {
     }, 1300);
   }
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event) => {
     setPrompt(event.target.value);
   };
 
@@ -125,7 +125,7 @@ export default function DreamPage() {
                       <DropDown
                         theme={theme}
                         setTheme={(newTheme) =>
-                          setTheme(newTheme as typeof theme)
+                          setTheme(newTheme )
                         }
                         themes={themes}
                       />
@@ -257,7 +257,7 @@ export default function DreamPage() {
                       <button
                         onClick={() => {
                           downloadPhoto(
-                            generatedImage!,
+                            generatedImage,
                             appendNewToName("generated.png")
                           );
                         }}

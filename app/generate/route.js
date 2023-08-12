@@ -12,7 +12,7 @@ const ratelimit = redis
   })
   : undefined;
 
-export async function POST(request: Request) {
+export async function POST(request) {
   // Rate Limiter Code
   if (ratelimit) {
     const headersList = headers();
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
           headers: {
             "X-RateLimit-Limit": result.limit,
             "X-RateLimit-Remaining": result.remaining,
-          } as any,
+          } ,
         }
       );
     }
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   let cancelUrl = jsonStartResponse.urls.cancel;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
-  let restoredImage: string | null = null;
+  let restoredImage = null;
   let countWait = 0;
   while (!restoredImage) {
     countWait += 1;
