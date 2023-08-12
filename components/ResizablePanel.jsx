@@ -3,8 +3,6 @@ import useMeasure from "react-use-measure";
 
 export default function ResizablePanel({
   children,
-}: {
-  children: React.ReactNode;
 }) {
   let [ref, { height }] = useMeasure();
 

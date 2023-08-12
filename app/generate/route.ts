@@ -84,15 +84,6 @@ export async function POST(request: Request) {
     }
   }
 
-  // console.log("cancelling run call...");
-  // await fetch(cancelUrl, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: "Token " + process.env.REPLICATE_API_KEY,
-  //   },
-  // });
-
   if(!restoredImage) {
     return new Response("Failed to restore image", { status: 500 });
   }

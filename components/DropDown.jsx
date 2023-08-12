@@ -7,18 +7,14 @@ import {
 import { Fragment } from "react";
 import { themeType } from "../utils/dropdownTypes";
 
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-interface DropDownProps {
-  theme: themeType;
-  setTheme: (theme: themeType) => void;
-  themes: themeType[];
-}
+
 
 // TODO: Change names since this is a generic dropdown now
-export default function DropDown({ theme, setTheme, themes }: DropDownProps) {
+export default function DropDown({ theme, setTheme, themes }) {
   return (
     <Menu as="div" className="relative block text-left">
       <div>
