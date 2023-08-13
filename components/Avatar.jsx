@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+
 import {
   Select,
   SelectContent,
@@ -19,14 +20,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+
 const Avatar = () => {
   useEffect(() => {
     fetchingproducts();
   }, []);
+  
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
