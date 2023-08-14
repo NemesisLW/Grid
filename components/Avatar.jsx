@@ -41,6 +41,7 @@ const Avatar = () => {
   const [bottomwearid, setbottomwearid] = useState(0);
   const [shoeid, setshoewearid] = useState(0);
   const[total,settotal] =useState(0);
+
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
@@ -164,7 +165,7 @@ const Avatar = () => {
    
   return (
     <>
-      <div className="flex  flex-col mx-20 ">
+      <div className="flex w-[600px] flex-col mx-20 ">
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
