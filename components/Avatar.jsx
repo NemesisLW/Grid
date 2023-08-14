@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/select";
 
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -41,6 +42,7 @@ const Avatar = () => {
   const [bottomwearid, setbottomwearid] = useState(0);
   const [shoeid, setshoewearid] = useState(0);
   const[total,settotal] =useState(0);
+
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
@@ -164,7 +166,7 @@ const Avatar = () => {
    
   return (
     <>
-      <div className="flex  flex-col mx-20 ">
+      <div className="flex w-[600px] flex-col mx-20 ">
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
@@ -174,8 +176,9 @@ const Avatar = () => {
           {topwear[topwearid] ? (
             <>
               <CardContent className="items-center justify-center">
-                <img
+                <Image
                   src={topwear[topwearid].image_src}
+                  alt=""
                   width={100}
                   height={100}
                 />
@@ -211,7 +214,8 @@ const Avatar = () => {
           {bottomwear[bottomwearid] ? (
             <>
               <CardContent className="items-center justify-center">
-                <img
+                <Image
+                alt=""
                   src={bottomwear[bottomwearid].image_src}
                   width={100}
                   height={100}
@@ -247,7 +251,7 @@ const Avatar = () => {
           {shoes[shoeid] ? (
             <>
               <CardContent className="items-center justify-center">
-                <img src={shoes[shoeid].image_src} width={100} height={100} />
+                <Image src={shoes[shoeid].image_src}  alt="" width={100} height={100} />
               </CardContent>
               <CardFooter>
                 <div className="flex gap-5">
@@ -261,7 +265,7 @@ const Avatar = () => {
                   <Button>
                     {" "}
                     <Link href={shoes[shoeid].link}>
-                      See full product detailas
+                      See full product details
                     </Link>
                   </Button>
                 </div>
