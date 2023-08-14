@@ -26,13 +26,13 @@ import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { query, where, orderBy, limit } from "firebase/firestore";  
 
-
-const Avatar = () => {
+const Avatar = ({product}) => {
   useEffect(() => {
     fetchingproducts();
   }, []);
-  
+    
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
@@ -43,7 +43,7 @@ const Avatar = () => {
   const [bottomwearid, setbottomwearid] = useState(0);
   const [shoeid, setshoewearid] = useState(0);
   const[total,settotal] =useState(0);
-
+   
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
@@ -147,9 +147,14 @@ const Avatar = () => {
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
+    
+    
   
   };
-
+//  if(bottomwear){
+//   const desiredProductindex = bottomwear.findIndex(Product => Product.id === product.id);4
+//    setbottomwearid(desiredProductindex);
+//  }
   const handlehandleproductchangefortopwear = () => {
     settopwearid(Math.floor(Math.random() * 4));
   
@@ -212,12 +217,12 @@ const Avatar = () => {
               Bottomwear
             </CardTitle>
           </CardHeader>
-          {bottomwear[bottomwearid] ? (
+          {product ? (
             <>
               <CardContent className="items-center justify-center">
                 <Image
                 alt=""
-                  src={bottomwear[bottomwearid].image_src}
+                  src={product.image_src}
                   width={100}
                   height={100}
                 />
@@ -231,11 +236,11 @@ const Avatar = () => {
                     Change
                   </button>
 
-                  <Button>
-                    <Link href={bottomwear[bottomwearid].link}>
+                  {/* <Button>
+                    <Link href={product.link}>
                       See full product detailas
                     </Link>{" "}
-                  </Button>
+                  </Button> */}
                 </div>
               </CardFooter>
             </>

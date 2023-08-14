@@ -1,12 +1,12 @@
 import Avatar from "@/components/Avatar";
 import Chat from "@/components/Chat";
+import Chatpage from "@/components/Chatpage";
 
 const Home = () => {
   return (
-    <div className="flex min-h-screen bg-slate-50 items-center justify-center">
-      <Avatar/>
-      <Chat />
-    </div>
+   <div>
+    <Chatpage/>
+   </div>
   );
 };
 
