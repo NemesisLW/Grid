@@ -22,7 +22,7 @@ const Chat = () => {
   
 
   return (
-    <Card className="w-[400px] mt-3">
+    <Card className="w-[600px] mt-3">
       <CardHeader>
         <CardTitle className="text-blue-600 font-title">
           Outfit Generator
@@ -32,7 +32,7 @@ const Chat = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] w-full pr-4">
+        <ScrollArea className="h-[600px] w-full pr-4">
           {messages.map((message) => {
             return (
               <div
