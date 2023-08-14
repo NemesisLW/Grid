@@ -19,6 +19,8 @@ import { useChat } from "ai/react";
 const Chat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
+  
+
   return (
     <Card className="w-[400px] mt-3">
       <CardHeader>

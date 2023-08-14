@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+
 import {
   Select,
   SelectContent,
@@ -19,14 +20,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
-import Image from "next/image"
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+
 const Avatar = () => {
   useEffect(() => {
     fetchingproducts();
   }, []);
+  
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
@@ -37,6 +42,7 @@ const Avatar = () => {
   const [bottomwearid, setbottomwearid] = useState(0);
   const [shoeid, setshoewearid] = useState(0);
   const[total,settotal] =useState(0);
+
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
@@ -160,7 +166,7 @@ const Avatar = () => {
    
   return (
     <>
-      <div className="flex  flex-col mx-20 ">
+      <div className="flex w-[600px] flex-col mx-20 ">
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
