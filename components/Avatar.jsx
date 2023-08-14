@@ -25,6 +25,7 @@ import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const Avatar = () => {
