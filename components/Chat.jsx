@@ -20,13 +20,17 @@ const Chat = () => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
-    <Card className="w-[600px] mt-3">
+    <Card className="w-[400px] mt-3">
       <CardHeader>
-        <CardTitle className="text-blue-600 font-title">Outfit Generator</CardTitle>
-        <CardDescription>Get your hand-picked customisations...</CardDescription>
+        <CardTitle className="text-blue-600 font-title">
+          Outfit Generator
+        </CardTitle>
+        <CardDescription>
+          Get your hand-picked customisations...
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[600px] w-full pr-4">
+        <ScrollArea className="h-[300px] w-full pr-4">
           {messages.map((message) => {
             return (
               <div
@@ -58,7 +62,6 @@ const Chat = () => {
         </ScrollArea>
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-2">
-
         <form className="space-x-2 w-full flex gap-2" onSubmit={handleSubmit}>
           <Input
             placeholder="Don't like something? let me find something else for you.."
