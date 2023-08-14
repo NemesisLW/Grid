@@ -26,10 +26,10 @@ const Chat = ({ products, setProduct }) => {
 
   const handleImageClick = (product) => {
     setSelectedImage(product);
-    setProduct(product)
+    setProduct(product);
   };
   return (
-    <Card className="w-[600px] mt-3">
+    <Card className="w-[500px] mt-3">
       <CardHeader>
         <CardTitle className="text-blue-600 font-title">
           Outfit Generator
@@ -39,7 +39,7 @@ const Chat = ({ products, setProduct }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[600px] w-full pr-4">
+        <ScrollArea className="h-[500px] w-full pr-4">
           {/* {messages.map((message) => {
             return (
               <>
