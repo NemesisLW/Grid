@@ -1,12 +1,11 @@
-import Chatpage from '@/components/Chatpage'
-import React from 'react'
+import Chatpage from "@/components/Chatpage";
 
 const page = () => {
   return (
     <div>
-        <Chatpage/>
+      <Chatpage />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

@@ -26,13 +26,13 @@ import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { query, where, orderBy, limit } from "firebase/firestore";  
+import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({product ,changedproduct}) => {
+const Avatar = ({ product, changedproduct }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
-    
+
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
@@ -42,133 +42,17 @@ const Avatar = ({product ,changedproduct}) => {
   const [topwearid, settopwearid] = useState(0);
   const [bottomwearid, setbottomwearid] = useState(0);
   const [shoeid, setshoewearid] = useState(0);
-  const[total,settotal] =useState(0);
-   
-  // const fetchingproducts = async () => {
-  //   try {
-  //     const querySnapshotforboottomwear = await getDocs(
-  //       collection(db, `Products/men/bottomwear`)
-  //     );
+  const [total, settotal] = useState(0);
 
-  //     querySnapshotforboottomwear.forEach((doc) => {
-  //       console.log(doc.id, " => ", doc.data());
-  //       const brand = doc.data().brand;
-  //       const color = doc.data().color;
-  //       const description = doc.data().description;
-  //       const image_src = doc.data().image_src;
-  //       const link = doc.data().link;
-  //       const price = doc.data().price;
-  //       const review = doc.data().review;
-  //       const size = doc.data().size;
-  //       const type = doc.data().type;
-  //       bottowear_product.push({
-  //         id: doc.id,
-  //         brand: brand,
-  //         color: color,
-  //         description: description,
-  //         image_src: image_src,
-  //         link: link,
-  //         price: price,
-  //         review: review,
-  //         size: size,
-  //         type: type,
-  //       });
-  //     });
-  //     console.log(bottowear_product);
-  //     setbottomwear(bottowear_product);
-  //   } catch (e) {
-  //     console.log("Error getting cached document:", e);
-  //   }
-  //   try {
-  //     const querySnapshotfortopwear = await getDocs(
-  //       collection(db, `Products/men/topwear`)
-  //     );
-
-  //     querySnapshotfortopwear.forEach((doc) => {
-  //       console.log(doc.id, " => ", doc.data());
-  //       const brand = doc.data().brand;
-  //       const color = doc.data().color;
-  //       const description = doc.data().description;
-  //       const image_src = doc.data().image_src;
-  //       const link = doc.data().link;
-  //       const price = doc.data().price;
-  //       const review = doc.data().review;
-  //       const size = doc.data().size;
-  //       const type = doc.data().type;
-  //       topwear_product.push({
-  //         id: doc.id,
-  //         brand: brand,
-  //         color: color,
-  //         description: description,
-  //         image_src: image_src,
-  //         link: link,
-  //         price: price,
-  //         review: review,
-  //         size: size,
-  //         type: type,
-  //       });
-  //     });
-  //     console.log(topwear_product);
-  //     settopwear(topwear_product);
-  //   } catch (e) {
-  //     console.log("Error getting cached document:", e);
-  //   }
-  //   try {
-  //     const querySnapshotfortopshoes = await getDocs(
-  //       collection(db, `Products/men/shoes`)
-  //     );
-
-  //     querySnapshotfortopshoes.forEach((doc) => {
-  //       console.log(doc.id, " => ", doc.data());
-  //       const brand = doc.data().brand;
-  //       const color = doc.data().color;
-  //       const description = doc.data().description;
-  //       const image_src = doc.data().image_src;
-  //       const link = doc.data().link;
-  //       const price = doc.data().price;
-  //       const review = doc.data().review;
-  //       const size = doc.data().size;
-  //       const type = doc.data().type;
-  //       shoes_product.push({
-  //         id: doc.id,
-  //         brand: brand,
-  //         color: color,
-  //         description: description,
-  //         image_src: image_src,
-  //         link: link,
-  //         price: price,
-  //         review: review,
-  //         size: size,
-  //         type: type,
-  //       });
-  //     });
-  //     console.log(shoes_product);
-  //     setshoes(shoes_product);
-  //   } catch (e) {
-  //     console.log("Error getting cached document:", e);
-  //   }
-    
-    
-  
-  // };
-//  if(bottomwear){
-//   const desiredProductindex = bottomwear.findIndex(Product => Product.id === product.id);4
-//    setbottomwearid(desiredProductindex);
-//  }
   const handlehandleproductchangefortopwear = () => {
     settopwearid(Math.floor(Math.random() * 4));
-  
-    
   };
   const handlehandleproductchangeforbottomwwear = () => {
     setbottomwearid(Math.floor(Math.random() * 4));
-  
   };
   const handlehandleproductchangeforshoe = () => {
     setshoewearid(Math.floor(Math.random() * 3));
-   
   };
- 
 
   return (
     <>
@@ -179,7 +63,9 @@ const Avatar = ({product ,changedproduct}) => {
               Your Avatar
             </CardTitle>
           </CardHeader>
-          {product[0]!=undefined &&product[1]!=undefined&&product[2]!=undefined? (
+          {product[0] != undefined &&
+          product[1] != undefined &&
+          product[2] != undefined ? (
             <>
               <CardContent className="items-center justify-center">
                 <Image
@@ -189,23 +75,32 @@ const Avatar = ({product ,changedproduct}) => {
                   height={100}
                 />
               </CardContent>
-              {changedproduct.image_src!=undefined?<> <CardContent className="items-center justify-center">
-                <Image
-                  src={changedproduct.image_src}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </CardContent></>:<> <CardContent className="items-center justify-center">
-                <Image
-                  src={product[1].image_src}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </CardContent></>}
-             
-              
+              {changedproduct.image_src != undefined ? (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={changedproduct.image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={product[1].image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              )}
+
               <CardContent className="items-center justify-center">
                 <Image
                   src={product[2].image_src}
@@ -214,7 +109,7 @@ const Avatar = ({product ,changedproduct}) => {
                   height={100}
                 />
               </CardContent>
-              
+
               {/* <CardFooter>
                 <div className="flex gap-5">
                   <button
@@ -267,7 +162,7 @@ const Avatar = ({product ,changedproduct}) => {
                       See full product detailas
                     </Link>{" "}
                   </Button> */}
-                {/* </div>
+        {/* </div>
               </CardFooter>
             </>
           ) : (
@@ -275,7 +170,7 @@ const Avatar = ({product ,changedproduct}) => {
               <Loader2 className="mr-6 h-16 w-16 animate-spin" />
             </>
           )}
-        </Card> */} 
+        </Card> */}
         {/* <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">Shoe</CardTitle>
@@ -313,15 +208,22 @@ const Avatar = ({product ,changedproduct}) => {
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">Price</CardTitle>
           </CardHeader>
-          {product[0]!=undefined &&product[1]!=undefined&&product[2]!=undefined ? (
+          {product[0] != undefined &&
+          product[1] != undefined &&
+          product[2] != undefined ? (
             <>
               <CardContent className="items-center justify-center">
-                <h3>{product[0].description}:{product[0].price}</h3>
-                <h3>`{product[1].description}:{product[1].price}</h3>
-                <h3>{product[2].description}:{product[2].price}</h3>
+                <h3>
+                  {product[0].description}:{product[0].price}
+                </h3>
+                <h3>
+                  `{product[1].description}:{product[1].price}
+                </h3>
+                <h3>
+                  {product[2].description}:{product[2].price}
+                </h3>
                 <h3>Total:{total}</h3>
               </CardContent>
-           
             </>
           ) : (
             <>

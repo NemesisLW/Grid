@@ -6,15 +6,49 @@ import { item } from "@/constants";
 import { db } from "@/Firebase.config";
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
+import { useStore } from "@/store/store";
+import { Button } from "./ui/button";
+
 const Chatpage = () => {
   console.log(item);
+  // const items = useStore.getState().filter;
+  const [currentRequest, setCurrentRequest] = useState(
+    useStore.getState().currentRequest
+  );
+
+  const callSuggestionLLM = async () => {
+    const response = await fetch("/api/find", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ currentRequest }),
+    });
+
+    const data = await response.json();
+    const filterJSON = data.filter;
+    console.log(filterJSON);
+  };
+
+  useEffect(() => {
+    const unsubscribe = useStore.subscribe(
+      (newState) => {
+        setCurrentRequest(newState.currentRequest);
+        callSuggestionLLM();
+      },
+      (state) => state.currentRequest !== currentRequest
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [currentRequest]);
+
   useEffect(() => {
     fetchingproducts();
   }, []);
+
   const [prodoct, setproduct] = useState([]);
   const Product = [];
   const bottowear_product = [];
@@ -25,6 +59,7 @@ const Chatpage = () => {
   const [topwear, settopwear] = useState([]);
   const [shoes, setshoes] = useState([]);
   const [seeavatar, setavatar] = useState(false);
+
   const fetchingproducts = async () => {
     try {
       const q = query(
@@ -171,7 +206,6 @@ const Chatpage = () => {
   console.log(allproducts);
   const [changedproductforchat, setchangedproductforchat] = useState([]);
   const setProduct = (product) => {
-    console.log(prodoct);
     setchangedproductforchat(product);
   };
   return (
@@ -189,8 +223,14 @@ const Chatpage = () => {
           seeavatar ? "" : "hidden"
         }`
         }> */}
-             <Chat products={prodoct} setProduct={setProduct} /></div>
-     
+      <Chat products={prodoct} setProduct={setProduct} />
+      <Button
+        onClick={() => {
+          console.log(currentRequest);
+        }}
+      />
+    </div>
+
     // </div>
   );
 };
