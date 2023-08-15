@@ -161,6 +161,8 @@ const Avatar = () => {
   return (
     <>
       <div className="flex  flex-col mx-20 ">
+
+      {/* upperwear */}
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
@@ -199,6 +201,8 @@ const Avatar = () => {
             </>
           )}
         </Card>
+
+      {/*Bottomwear  */}
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
