@@ -40,13 +40,10 @@ const Chat = ({ products, setProduct }) => {
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[500px] w-full pr-4">
-          {/* {messages.map((message) => {
+          {messages.map((message) => {
             return (
-              <>
-                <div
-                  key={message.id}
-                  className="flex gap-3 text-slate-600 text-sm mb-4"
-                >
+              <div key={message.id} className="flex flex-col">
+                <div className="flex gap-3 text-slate-600 text-sm mb-4">
                   {message.role == "user" && (
                     <Avatar>
                       <AvatarFallback></AvatarFallback>
@@ -65,38 +62,37 @@ const Chat = ({ products, setProduct }) => {
                       {message.role === "user" ? "You" : "Assistant"}
                     </span>
                     {message.content}
-                    {message.role == "assistant" ? (
-                      <> */}
-          <div>
-            {products.map((product) => (
-              <div
-                key={product.image_src}
-                className={`image-container ${
-                  selectedImage === product ? "selected" : ""
-                }`}
-                onClick={() => handleImageClick(product)}
-              >
-                <Image
-                  alt=""
-                  src={product.image_src}
-                  width={100}
-                  height={100}
-                />
-                {selectedImage === product && (
-                  <div className="tick-mark">&#10003;</div>
-                )}
-              </div>
-            ))}
-          </div>
-          {/* </>
-                    ) : (
-                      <></>
-                    )}
                   </p>
-                </div> */}
-          {/* </>
+                </div>
+
+                <div>
+                  {message.role === "assistant" && (
+                    <div className="flex ">
+                      {products.map((product) => (
+                        <div
+                          key={product.image_src}
+                          className={`image-container ${
+                            selectedImage === product ? "selected" : ""
+                          }`}
+                          onClick={() => handleImageClick(product)}
+                        >
+                          <Image
+                            alt=""
+                            src={product.image_src}
+                            width={100}
+                            height={100}
+                          />
+                          {selectedImage === product && (
+                            <div className="tick-mark">&#10003;</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             );
-          })} */}
+          })}
         </ScrollArea>
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-2">
