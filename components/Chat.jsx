@@ -12,15 +12,32 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ScrollArea } from "./ui/scroll-area";
-import { Toggle } from "@/components/ui/toggle";
 
 import { useChat } from "ai/react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { useStore } from "@/store/store";
 
-const Chat = () => {
+const Chat = ({ products, setProduct }) => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
 
+  const latestUserReq = messages
+    .slice()
+    .reverse()
+    .find((message) => message.role === "user")?.content;
+
+  useEffect(() => {
+    useStore.setState({ currentRequest: latestUserReq });
+  }, [latestUserReq]);
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (product) => {
+    setSelectedImage(product);
+    setProduct(product);
+  };
   return (
-    <Card className="w-[400px] mt-3">
+    <Card className="w-[500px] mt-3">
       <CardHeader>
         <CardTitle className="text-blue-600 font-title">
           Outfit Generator
@@ -30,32 +47,57 @@ const Chat = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] w-full pr-4">
+        <ScrollArea className="h-[500px] w-full pr-4">
           {messages.map((message) => {
             return (
-              <div
-                key={message.id}
-                className="flex gap-3 text-slate-600 text-sm mb-4"
-              >
-                {message.role == "user" && (
-                  <Avatar>
-                    <AvatarFallback></AvatarFallback>
-                    <AvatarImage src="https://github.com/NemesisLW.png" />
-                  </Avatar>
-                )}
-                {message.role == "assistant" && (
-                  <Avatar>
-                    <AvatarFallback></AvatarFallback>
-                    <AvatarImage src="https://learnprogramo.com/wp-content/uploads/2022/05/cute-girl-pfp-1.jpg?ezimgfmt=rs:352x352/rscb2/ngcb2/notWebP" />
-                  </Avatar>
-                )}
+              <div key={message.id} className="flex flex-col">
+                <div className="flex gap-3 text-slate-600 text-sm mb-4">
+                  {message.role == "user" && (
+                    <Avatar>
+                      <AvatarFallback></AvatarFallback>
+                      <AvatarImage src="https://github.com/NemesisLW.png" />
+                    </Avatar>
+                  )}
+                  {message.role == "assistant" && (
+                    <Avatar>
+                      <AvatarFallback></AvatarFallback>
+                      <AvatarImage src="https://learnprogramo.com/wp-content/uploads/2022/05/cute-girl-pfp-1.jpg?ezimgfmt=rs:352x352/rscb2/ngcb2/notWebP" />
+                    </Avatar>
+                  )}
 
-                <p className="leading-relaxed">
-                  <span className="block font-bold text-slate-800">
-                    {message.role === "user" ? "You" : "Assistant"}
-                  </span>
-                  {message.content}
-                </p>
+                  <p className="leading-relaxed">
+                    <span className="block font-bold text-slate-800">
+                      {message.role === "user" ? "You" : "Assistant"}
+                    </span>
+                    {message.content}
+                  </p>
+                </div>
+
+                <div>
+                  {message.role === "assistant" && (
+                    <div className="flex ">
+                      {products.map((product) => (
+                        <div
+                          key={product.image_src}
+                          className={`image-container ${
+                            selectedImage === product ? "selected" : ""
+                          }`}
+                          onClick={() => handleImageClick(product)}
+                        >
+                          <Image
+                            alt=""
+                            src={product.image_src}
+                            width={100}
+                            height={100}
+                          />
+                          {selectedImage === product && (
+                            <div className="tick-mark">&#10003;</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
