@@ -12,16 +12,24 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ScrollArea } from "./ui/scroll-area";
-import { Toggle } from "@/components/ui/toggle";
 
 import { useChat } from "ai/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useStore } from "@/store/store";
 
 const Chat = ({ products, setProduct }) => {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  console.log("lll");
-  console.log(products);
+
+  const latestUserReq = messages
+    .slice()
+    .reverse()
+    .find((message) => message.role === "user")?.content;
+
+  useEffect(() => {
+    useStore.setState({ currentRequest: latestUserReq });
+  }, [latestUserReq]);
+
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageClick = (product) => {

@@ -17,6 +17,7 @@ export async function POST(req) {
   
   In this case, your task will be to tell the user to that you understood what they want and are cooking up something personalized just for them. Your task will be convince the user that the following suggestion will be just for them.
   `;
+  console.log(messages);
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",

@@ -5,9 +5,9 @@ import Landing from "@/components/Landing";
 
 const Home = () => {
   return (
-   <div className="flex items-center my-20  justify-center">
- <Landing/>
-   </div>
+    <div className="flex items-center my-20 justify-center">
+      <Landing />
+    </div>
   );
 };
 
