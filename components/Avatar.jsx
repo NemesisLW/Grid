@@ -28,11 +28,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({ product, changedproduct }) => {
+const Avatar = ({ product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
-
+  console.log(changedproducttype)
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
@@ -67,15 +67,35 @@ const Avatar = ({ product, changedproduct }) => {
           product[1] != undefined &&
           product[2] != undefined ? (
             <>
-              <CardContent className="items-center justify-center">
-                <Image
-                  src={product[0].image_src}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </CardContent>
-              {changedproduct.image_src != undefined ? (
+              {changedproduct.image_src != undefined &&
+              changedproducttype == "topwear" ? (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={changedproduct.image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={product[0].image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              )}
+
+              {changedproduct.image_src != undefined &&
+              changedproducttype == "bottomwear" ? (
                 <>
                   {" "}
                   <CardContent className="items-center justify-center">
@@ -101,14 +121,32 @@ const Avatar = ({ product, changedproduct }) => {
                 </>
               )}
 
-              <CardContent className="items-center justify-center">
-                <Image
-                  src={product[2].image_src}
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </CardContent>
+              {changedproduct.image_src != undefined &&
+              changedproducttype == "shoe" ? (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={changedproduct.image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <CardContent className="items-center justify-center">
+                    <Image
+                      src={product[2].image_src}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                  </CardContent>
+                </>
+              )}
 
               {/* <CardFooter>
                 <div className="flex gap-5">
