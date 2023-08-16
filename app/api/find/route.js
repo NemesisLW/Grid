@@ -45,10 +45,7 @@ const generate = async (prompt) => {
   ,
   `;
 
-  const userPrompt = `
-  Though you should consult User Details if User Request is not sufficient to generate accurate JSON object. You must give User Request priority over User Details, if user requests anything that does not match or is not mentioned in details. 
-  
-  Remember, you should NOT ever output any other text other than the JSON Object.
+  const userPrompt = `Remember, you should NOT ever output any other text other than the JSON Object.
   
   The JSON Object you generate must have values for the following keys: "outfit_type", "price", "color".
   "outfit_type" key can have only one of the following values: {"bottomwear", "topwear", "shoes"}
