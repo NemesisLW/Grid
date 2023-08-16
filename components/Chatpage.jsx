@@ -8,7 +8,6 @@ import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
-import { Button } from "./ui/button";
 
 const Chatpage = () => {
   console.log(item);
@@ -224,11 +223,6 @@ const Chatpage = () => {
         }`
         }> */}
       <Chat products={prodoct} setProduct={setProduct} />
-      <Button
-        onClick={() => {
-          console.log(currentRequest);
-        }}
-      />
     </div>
 
     // </div>
