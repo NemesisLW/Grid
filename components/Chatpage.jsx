@@ -26,8 +26,8 @@ const Chatpage = () => {
     });
 
     const data = await response.json();
-    setFilter(data.filter);
-    console.log(filter);
+    const filterJSON = JSON.parse(data.filter);
+    console.log(filterJSON);
   };
 
   useEffect(() => {
