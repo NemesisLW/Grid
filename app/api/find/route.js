@@ -39,7 +39,7 @@ const generate = async (prompt) => {
   
   Remember, Your Response will have to formatted in the following way, as a JSON Object.
   In our Database, there are only the following key values present:
-  id, name, brand, type, outfit-type, size, color, price
+  "id", "name", "brand", "type", "outfit-type", "size", "color", "price"
   
   Make sure the JSON you generate does not content any other key except from the above mentioned.
   
@@ -57,9 +57,15 @@ const generate = async (prompt) => {
   User Details: "User Likes the colour Blue, Also Diwali is around, Likes Branded accessories."
   
   User Request: ${prompt}
+
+  Though you should consult User Details if User Request is not sufficient to generate accurate JSON object. You must give User Request priority over User Details, if user requests anything that does not match or is not mentioned in details. 
   
   Remember, you should NOT ever output any other text other than the JSON Object.
   
+  The JSON Object you generate must have values for the following keys: "outfit-type", "price", "color".
+
+  "outfit-type" key can have only one of the following values: {"bottomwear", "topwear", "shoes", "ethnic", "handbag", "jhumka", "watches", "saree"}
+
   The JSON Object:`;
 
   const completion = await openai.createChatCompletion({
