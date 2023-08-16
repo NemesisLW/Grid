@@ -11,10 +11,10 @@ import { useStore } from "@/store/store";
 
 const Chatpage = () => {
   console.log(item);
-  // const items = useStore.getState().filter;
   const [currentRequest, setCurrentRequest] = useState(
     useStore.getState().currentRequest
   );
+  const [filter, setFilter] = useState(useStore.getState().filter);
 
   const callSuggestionLLM = async () => {
     const response = await fetch("/api/find", {
@@ -26,8 +26,8 @@ const Chatpage = () => {
     });
 
     const data = await response.json();
-    const filterJSON = data.filter;
-    console.log(filterJSON);
+    setFilter(data.filter);
+    console.log(filter);
   };
 
   useEffect(() => {
