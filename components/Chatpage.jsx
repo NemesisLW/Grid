@@ -10,11 +10,10 @@ import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 
 const Chatpage = () => {
-  console.log(item);
   const [currentRequest, setCurrentRequest] = useState(
     useStore.getState().currentRequest
   );
-  const [filter, setFilter] = useState(useStore.getState().filter);
+  const [filter, setFilter] = useState([]);
 
   const callSuggestionLLM = async () => {
     const response = await fetch("/api/find", {
@@ -26,7 +25,8 @@ const Chatpage = () => {
     });
 
     const data = await response.json();
-    const filterJSON = JSON.parse(data.filter);
+    let filterJSON = JSON.parse(data.filter);
+    console.log(typeof filterJSON);
     console.log(filterJSON);
   };
 
@@ -42,7 +42,7 @@ const Chatpage = () => {
     return () => {
       unsubscribe();
     };
-  }, [currentRequest]);
+  }, [useStore.getState().currentRequest]);
 
   useEffect(() => {
     fetchingproducts();
@@ -67,7 +67,6 @@ const Chatpage = () => {
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -100,7 +99,6 @@ const Chatpage = () => {
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -123,7 +121,6 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(bottowear_product);
       setbottomwear(bottowear_product);
     } catch (e) {
       console.log("Error getting cached document:", e);
@@ -134,7 +131,6 @@ const Chatpage = () => {
       );
 
       querySnapshotfortopwear.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -157,7 +153,6 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(topwear_product);
       settopwear(topwear_product);
     } catch (e) {
       console.log("Error getting cached document:", e);
@@ -168,7 +163,6 @@ const Chatpage = () => {
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -191,9 +185,7 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(shoes_product);
       setshoes(shoes_product);
-      console.log(shoes[0]);
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
@@ -202,7 +194,6 @@ const Chatpage = () => {
     allproducts.push(topwear[0], bottomwear[0], shoes[0]);
   }
 
-  console.log(allproducts);
   const [changedproductforchat, setchangedproductforchat] = useState([]);
   const setProduct = (product) => {
     setchangedproductforchat(product);
