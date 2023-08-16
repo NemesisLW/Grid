@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ["rukminim2.flixcart.com"],
-    }
-}
+  images: {
+    domains: ["rukminim2.flixcart.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
