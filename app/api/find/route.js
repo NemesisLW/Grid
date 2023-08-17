@@ -1,6 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
 import { NextResponse } from "next/server";
-import { Prompt } from "next/font/google";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
