@@ -21,12 +21,10 @@
     </li>
   </ol>
 
-  
-
 <div align="center">
   <p align="center">
     <a href="https://youtube.com">View Demo</a>
-    .
+    ·
     <a href="https://youtube.com">Proof of Concept</a>
   </p>
 </div>
