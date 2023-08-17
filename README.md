@@ -12,6 +12,13 @@
     </li>
     <li><a href="#use-cases">Use Cases</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li>
+      <a href="#current-issues-and-limitations">Current Issues and Limitations</a>
+      <ul>
+      <li><a href="#current-issues">Current Issues</a></li>
+      <li><a href="#limitations">Limitations</a></li>
+      </ul>
+    </li>
   </ol>
 
 
