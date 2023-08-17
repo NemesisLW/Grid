@@ -23,7 +23,7 @@
 
   
 
-<div>
+<div align="center">
   <p align="center">
     <a href="https://youtube.com">View Demo</a>
     .
