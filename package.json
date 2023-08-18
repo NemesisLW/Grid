@@ -59,6 +59,7 @@
     "react-markdown": "^8.0.5",
     "react-multi-carousel": "^2.8.2",
     "react-responsive-carousel": "^3.2.23",
+    "react-speech-recognition": "^3.10.0",
     "react-toastify": "^9.1.1",
     "swr": "^2.1.0",
     "tailwind-merge": "^1.14.0",

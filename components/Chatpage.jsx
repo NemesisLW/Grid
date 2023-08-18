@@ -2,24 +2,17 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import Chat from "./Chat";
-import { item } from "@/constants";
 import { db } from "@/Firebase.config";
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 import { mensformalpantblack } from "@/constants/MensFormalPantsBlack";
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
-import {
- 
 
-  getDoc,
-  setDoc,
-  addDoc,
-  Timestamp,
-} from "firebase/firestore";
 const Chatpage = () => {
   const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
-  const [changedproductype ,setchangedproducttype] =useState("");
+  const [changedproductype, setchangedproducttype] = useState("");
+
   const callSuggestionLLM = async () => {
     const currentUserRequest = useStore.getState().currentRequest;
     const response = await fetch("/api/find", {
@@ -31,7 +24,7 @@ const Chatpage = () => {
     });
 
     const data = await response.json();
-    console.log(data)
+
     let filterJSON = JSON.parse(data.filter);
     console.log(filterJSON);
 
@@ -67,39 +60,39 @@ const Chatpage = () => {
           });
         });
         setproduct(Product);
-        console.log(Product)
-      }else{
-      const qu = query(
-        collection(db, `Products/men/${filterJSON.outfit_type}`),
-        where("color", "==", `black`)
-      );
-      const querySnapshot = await getDocs(qu);
-      querySnapshot.forEach((doc) => {
-        const brand = doc.data().brand;
-        const color = doc.data().color;
-        const description = doc.data().description;
-        const image_src = doc.data().image_src;
-        const link = doc.data().link;
-        const price = doc.data().price;
-        const review = doc.data().review;
-        const size = doc.data().size;
-        const type = doc.data().type;
-        Product.push({
-          id: doc.id,
-          brand: brand,
-          color: color,
-          description: description,
-          image_src: image_src,
-          link: link,
-          price: price,
-          review: review,
-          size: size,
-          type: type,
+        console.log(Product);
+      } else {
+        const qu = query(
+          collection(db, `Products/men/${filterJSON.outfit_type}`),
+          where("color", "==", `black`)
+        );
+        const querySnapshot = await getDocs(qu);
+        querySnapshot.forEach((doc) => {
+          const brand = doc.data().brand;
+          const color = doc.data().color;
+          const description = doc.data().description;
+          const image_src = doc.data().image_src;
+          const link = doc.data().link;
+          const price = doc.data().price;
+          const review = doc.data().review;
+          const size = doc.data().size;
+          const type = doc.data().type;
+          Product.push({
+            id: doc.id,
+            brand: brand,
+            color: color,
+            description: description,
+            image_src: image_src,
+            link: link,
+            price: price,
+            review: review,
+            size: size,
+            type: type,
+          });
         });
-      });
-      setproduct(Product);
-      console.log(Product)
-    }
+        setproduct(Product);
+        console.log(Product);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -123,7 +116,7 @@ const Chatpage = () => {
     fetchingproducts();
   }, []);
 
-  const [prodoct, setproduct] = useState([]);
+  const [product, setproduct] = useState([]);
   const Product = [];
   const bottowear_product = [];
   const topwear_product = [];
@@ -135,7 +128,6 @@ const Chatpage = () => {
   const [seeavatar, setavatar] = useState(false);
 
   const fetchingproducts = async () => {
-  
     try {
       const querySnapshotforboottomwear = await getDocs(
         collection(db, `Products/men/bottomwear`)
@@ -260,7 +252,7 @@ const Chatpage = () => {
           seeavatar ? "" : "hidden"
         }`
         }> */}
-      <Chat products={prodoct} setProduct={setProduct} />
+      <Chat products={product} setProduct={setProduct} />
     </div>
 
     // </div>

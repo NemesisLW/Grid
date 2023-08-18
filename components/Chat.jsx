@@ -19,8 +19,16 @@ import { useState, useEffect } from "react";
 import { useStore } from "@/store/store";
 
 const Chat = ({ products, setProduct }) => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const {
+    messages,
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+  } = useChat();
 
+  // Get the Latest Request by the User to initiate Search
   const latestUserReq = messages
     .slice()
     .reverse()
@@ -36,6 +44,9 @@ const Chat = ({ products, setProduct }) => {
     setSelectedImage(product);
     setProduct(product);
   };
+
+  const [selectedQuery, setSelectedQuery] = useState("");
+
   return (
     <Card className="w-[500px] mt-3">
       <CardHeader>
