@@ -240,18 +240,7 @@ const Chatpage = () => {
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
       />
-      {/* <button
-    //     // onclick={setavatar(true)}
-    //     className={`${
-    //       seeavatar ? "hidden" : ""
-    //     } block bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-500/50 rounded-lg px-4`}
-    //   >
-    //     Change Avatar
-    //   </button> */}
-      {/* <div className={`${
-          seeavatar ? "" : "hidden"
-        }`
-        }> */}
+
       <Chat products={product} setProduct={setProduct} />
     </div>
 

@@ -56,17 +56,15 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
 
   return (
     <>
-      <div className="flex w-[400px] flex-col mx-20 items-center  ">
+      <div className="flex w-[400px] flex-col mx-20 items-center">
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600 font-title ">
-              Your Avatar
-            </CardTitle>
+            <CardTitle className="text-blue-600">Your Avatar</CardTitle>
           </CardHeader>
           {product[0] != undefined &&
           product[1] != undefined &&
           product[2] != undefined ? (
-            <>
+            <div className="flex h-[150px] w-[400px]">
               {changedproduct.image_src != undefined &&
               changedproducttype == "topwear" ? (
                 <>
@@ -75,7 +73,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                     <Image
                       src={changedproduct.image_src}
                       alt=""
-                      width={100}
+                      width="auto"
                       height={100}
                     />
                   </CardContent>
@@ -163,7 +161,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                   </Button>
                 </div>
               </CardFooter> */}
-            </>
+            </div>
           ) : (
             <>
               <Loader2 className="mr-6 h-16 w-16 animate-spin" />
