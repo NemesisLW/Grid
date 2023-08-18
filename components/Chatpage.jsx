@@ -10,28 +10,27 @@ import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 
 const Chatpage = () => {
-  const [currentRequest, setCurrentRequest] = useState(
-    useStore.getState().currentRequest
-  );
+  const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
-  const [changedproductype ,setchangedproducttype] =useState("");
+  const [changedproductype, setchangedproducttype] = useState("");
+
   const callSuggestionLLM = async () => {
+    const currentUserRequest = useStore.getState().currentRequest;
     const response = await fetch("/api/find", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ currentRequest }),
+      body: JSON.stringify({ currentUserRequest }),
     });
 
     const data = await response.json();
     let filterJSON = JSON.parse(data.filter);
-    console.log(typeof filterJSON);
-    console.log(filterJSON.outfit_type);
+    console.log(filterJSON);
+
     setchangedproducttype(filterJSON.outfit_type);
-    console.log(filterJSON.color);
     try {
-      if(filterJSON.color =="any" ||filterJSON.color == "undefined"){
+      if (filterJSON.color == "any" || filterJSON.color == "undefined") {
         const q = query(
           collection(db, `Products/men/${filterJSON.outfit_type}`),
           where("color", "==", `black`)
@@ -61,39 +60,39 @@ const Chatpage = () => {
           });
         });
         setproduct(Product);
-        console.log(Product)
-      }else{
-      const qu = query(
-        collection(db, `Products/men/${filterJSON.outfit_type}`),
-        where("color", "==", `black`)
-      );
-      const querySnapshot = await getDocs(qu);
-      querySnapshot.forEach((doc) => {
-        const brand = doc.data().brand;
-        const color = doc.data().color;
-        const description = doc.data().description;
-        const image_src = doc.data().image_src;
-        const link = doc.data().link;
-        const price = doc.data().price;
-        const review = doc.data().review;
-        const size = doc.data().size;
-        const type = doc.data().type;
-        Product.push({
-          id: doc.id,
-          brand: brand,
-          color: color,
-          description: description,
-          image_src: image_src,
-          link: link,
-          price: price,
-          review: review,
-          size: size,
-          type: type,
+        console.log(Product);
+      } else {
+        const qu = query(
+          collection(db, `Products/men/${filterJSON.outfit_type}`),
+          where("color", "==", `${filterJSON.outfit_type}`)
+        );
+        const querySnapshot = await getDocs(qu);
+        querySnapshot.forEach((doc) => {
+          const brand = doc.data().brand;
+          const color = doc.data().color;
+          const description = doc.data().description;
+          const image_src = doc.data().image_src;
+          const link = doc.data().link;
+          const price = doc.data().price;
+          const review = doc.data().review;
+          const size = doc.data().size;
+          const type = doc.data().type;
+          Product.push({
+            id: doc.id,
+            brand: brand,
+            color: color,
+            description: description,
+            image_src: image_src,
+            link: link,
+            price: price,
+            review: review,
+            size: size,
+            type: type,
+          });
         });
-      });
-      setproduct(Product);
-      console.log(Product)
-    }
+        setproduct(Product);
+        console.log(Product);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -102,7 +101,7 @@ const Chatpage = () => {
   useEffect(() => {
     const unsubscribe = useStore.subscribe(
       (newState) => {
-        setCurrentRequest(newState.currentRequest);
+        setUserRequest(newState.currentRequest);
         callSuggestionLLM();
       },
       (state) => state.currentRequest !== currentRequest
@@ -129,7 +128,6 @@ const Chatpage = () => {
   const [seeavatar, setavatar] = useState(false);
 
   const fetchingproducts = async () => {
-  
     try {
       const querySnapshotforboottomwear = await getDocs(
         collection(db, `Products/men/bottomwear`)
@@ -237,7 +235,11 @@ const Chatpage = () => {
   };
   return (
     <div className="flex min-h-screen bg-slate-50 items-center justify-center">
-      <Avatar product={allproducts} changedproduct={changedproductforchat} changedproducttype={changedproductype} />
+      <Avatar
+        product={allproducts}
+        changedproduct={changedproductforchat}
+        changedproducttype={changedproductype}
+      />
       {/* <button
     //     // onclick={setavatar(true)}
     //     className={`${

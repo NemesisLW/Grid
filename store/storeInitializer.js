@@ -4,10 +4,10 @@ import { useRef } from "react";
 
 import { useStore } from "@/src/store";
 
-function StoreInitializer({ name, price }) {
+function StoreInitializer({ currentRequest, filter }) {
   const initialized = useRef(false);
   if (!initialized.current) {
-    useStore.setState({ name, price });
+    useStore.setState({ currentRequest, filter });
     initialized.current = true;
   }
   return null;

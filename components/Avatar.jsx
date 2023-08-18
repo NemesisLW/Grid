@@ -32,7 +32,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
-  console.log(changedproducttype)
+  console.log(changedproducttype);
   const bottowear_product = [];
   const topwear_product = [];
   const shoes_product = [];
@@ -102,7 +102,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                     <Image
                       src={changedproduct.image_src}
                       alt=""
-                      width={100}
+                      width="auto"
                       height={100}
                     />
                   </CardContent>

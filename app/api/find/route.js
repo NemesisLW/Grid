@@ -11,7 +11,7 @@ const llm = new OpenAI({
 
 export async function POST(request) {
   const req = await request.json();
-  const userRequest = req.currentRequest;
+  const userRequest = req.currentUserRequest;
   const result = await generate(userRequest);
 
   try {
@@ -44,10 +44,10 @@ take into account the user's gender, favorite colors, preferred styles, and any 
  - The Formatted Response must specify the color and type and a price range.
 
 # USER DETAILS
--GENDER: Female
+- GENDER: Female
 - AGE: 21
 - LOCATION: MUMBAI
--Favorite color - Pink
+- Favorite color - Pink
 
 # USER REQUEST
 
@@ -101,7 +101,9 @@ const generate = async (prompt) => {
     verbose: true,
   });
 
-  const chainExecution = await searchChain.call({ request: prompt });
+  const chainExecution = await searchChain.call({
+    request: prompt,
+  });
   console.log(chainExecution);
   return chainExecution;
 };
