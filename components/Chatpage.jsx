@@ -240,11 +240,8 @@ const Chatpage = () => {
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
       />
-
       <Chat products={product} setProduct={setProduct} />
     </div>
-
-    // </div>
   );
 };
 

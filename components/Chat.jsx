@@ -14,12 +14,19 @@ import Combobox from "./Combobox";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ScrollArea } from "./ui/scroll-area";
 
+import "regenerator-runtime/runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+
 import { useChat } from "ai/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useStore } from "@/store/store";
+import { Mic } from "lucide-react";
 
 const Chat = ({ products, setProduct }) => {
+  // Streaming AI Primary Response
   const {
     messages,
     input,
@@ -28,6 +35,41 @@ const Chat = ({ products, setProduct }) => {
     handleSubmit,
     isLoading,
   } = useChat();
+
+  // Voice Recognition
+  const [transcribing, setTranscribing] = useState(true);
+  const [clearTranscriptOnListen, setClearTranscriptOnListen] = useState(true);
+  const toggleTranscribing = () => setTranscribing(!transcribing);
+  const toggleClearTranscriptOnListen = () =>
+    setClearTranscriptOnListen(!clearTranscriptOnListen);
+
+  const {
+    transcript,
+    interimTranscript,
+    finalTranscript,
+    resetTranscript,
+    listening,
+    browserSupportsSpeechRecognition,
+    isMicrophoneAvailable,
+  } = useSpeechRecognition({ transcribing, clearTranscriptOnListen });
+
+  const startListening = () => {
+    if (!browserSupportsSpeechRecognition) {
+      return <span>Browser does not support speech recognition.</span>;
+    }
+    if (!isMicrophoneAvailable) {
+      return <span>Please allow access to the microphone</span>;
+    }
+    SpeechRecognition.startListening({ continuous: true });
+  };
+  useEffect(() => {
+    if (interimTranscript !== "") {
+      console.log("Got interim result:", interimTranscript);
+    }
+    if (finalTranscript !== "") {
+      setInput(finalTranscript);
+    }
+  }, [interimTranscript, finalTranscript]);
 
   // Get the Latest Request by the User to initiate Search
   const latestUserReq = messages
@@ -46,6 +88,7 @@ const Chat = ({ products, setProduct }) => {
     setProduct(product);
   };
 
+  // Suggested queries
   const [selectedQuery, setSelectedQuery] = useState("");
 
   const handleQuerySelect = (selectedValue) => {
@@ -138,6 +181,16 @@ const Chat = ({ products, setProduct }) => {
             className="bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/50"
           >
             Send
+          </Button>
+          <Button
+            variant="mic"
+            onTouchStart={startListening}
+            onMouseDown={startListening}
+            onTouchEnd={SpeechRecognition.stopListening}
+            onMouseUp={SpeechRecognition.stopListening}
+            className={listening ? "bg-blue-800" : "bg-blue-600"}
+          >
+            <Mic />
           </Button>
         </form>
       </CardFooter>

@@ -11,20 +11,6 @@ import {
   CardTitle,
 } from "./ui/card";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
-
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
