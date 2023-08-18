@@ -10,6 +10,7 @@ import {
 
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import Combobox from "./Combobox";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ScrollArea } from "./ui/scroll-area";
 
@@ -46,6 +47,11 @@ const Chat = ({ products, setProduct }) => {
   };
 
   const [selectedQuery, setSelectedQuery] = useState("");
+
+  const handleQuerySelect = (selectedValue) => {
+    setSelectedQuery(selectedValue);
+    setInput(selectedValue);
+  };
 
   return (
     <Card className="w-[500px] mt-3">
@@ -115,6 +121,12 @@ const Chat = ({ products, setProduct }) => {
         </ScrollArea>
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-2">
+        <div className="flex flex-row w-full justify-between">
+          <Combobox
+            selectedQuery={selectedQuery}
+            onQuerySelect={handleQuerySelect}
+          />
+        </div>
         <form className="space-x-2 w-full flex gap-2" onSubmit={handleSubmit}>
           <Input
             placeholder="Don't like something? let me find something else for you.."
