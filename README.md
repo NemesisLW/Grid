@@ -99,7 +99,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
   - [x] Researched Existing Solutions and Proposals
   - [ ] Implementation
           
-- [] **Helpful Features**
+- [ ] **Helpful Features**
   - [x] Suggested Frequent Requests
   - [x] Enabled Voice Recognition    
 
