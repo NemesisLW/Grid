@@ -10,10 +10,6 @@
     <li><a href="#use-cases">Use Cases</a></li>
     <li>
       <a href="#current-issues-and-limitations">Current Issues and Limitations</a>
-      <ul>
-      <li><a href="#current-issues">Current Issues</a></li>
-      <li><a href="#limitations">Limitations</a></li>
-      </ul>
     </li>
     <li><a href="#roadmap">Roadmap - Future Scope</a></li>
   </ol>
@@ -74,11 +70,21 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
   * **Unified Shopping Experience:** The Conversational Fashion Outfit Generator seamlessly integrates into Flipkart's existing platform, providing users with a holistic shopping journey.
   * **Enhanced Business Metrics:** Improved user engagement, conversion rates, and ARPU directly contribute to elevated profitability and key user analytics.
 
+<!-- CURRENT ISSUES AND LIMITATIONS-->
+## Current Issues and Limitations
+* **Uncertain LLM Hallucination**
+|  Issue 	| Description  	|   Solution	|
+|---	|---	|---	|
+|  Context Overload and Noise  	|  Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses. 	|  Experimenting with attention mechanisms or summarization techniques to guide the LLM 	|
+|  Lack of Information 	|  Self Explanatory. Not Providing The LLM with enough information will lead to incorrect/misleading suggestions 	| Implement Filter Layers that will Evaluate User Requests for context	|
+* **User Interface**
+
 <!-- ROADMAP - FUTURE SCOPE -->
 ## Roadmap - Future Scope
 
 - [x] **Ideating & Decomposition of Problem Statement**
-  - [x] Figuring out how the solution can be integrate seamlessly into existing Flipkart Ecosystem.
+  - [x] Figuring out how the solution can be integrate seamlessly into existing Flipkart Infrastructure
+  - [x] Efficient Uses of Resources - Approach to leverage existing Product Recommendation Pipeline
   - [x] Defining specific usecases
   - [ ] Iterate
 
@@ -90,18 +96,26 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
   - [x] Design a basic User Interface
   - [x] Enable Conversational Product Discovery
   - [x] Generate Initial Response
+  - [ ] Stylize
 
+- [x] **Prompt Designing & Engineering** 
 - [x] **Intents Extraction & Search LLM Pipeline**
   - [x] Reformat User Request
   - [x] Extract Outfit Suggestions
   - [x] Reformat Suggestions & Search Inventory
-  - [ ] Iterate and Improve 
+  - [ ] Iterate and Improve
+        
+- [ ] **Vector Database Design** 
 
 - [ ] **Virtual Try On**
   - [x] Researched Existing Solutions and Proposals
   - [ ] Implementation
+        
+- [ ] **Integrate into Existing Flipkart Ecosystem**
+  - [ ] :)
           
 - [ ] **Helpful Features**
   - [x] Suggested Frequent Requests
-  - [x] Enabled Voice Recognition    
+  - [x] Enabled Voice Recognition
+  - [ ]  
 
