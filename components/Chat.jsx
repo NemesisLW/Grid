@@ -18,7 +18,7 @@ import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-
+import { v4 as uuidv4 } from 'uuid';
 import { useChat } from "ai/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -136,20 +136,27 @@ const Chat = ({ products, setProduct }) => {
                 <div>
                   {message.role === "assistant" && (
                     <div className="flex ">
+
                       {products.slice(0, 4).map((product) => (
                         <div
-                          key={product.image_src}
+                        key={uuidv4()}
                           className={`image-container ${
                             selectedImage === product ? "selected" : ""
                           }`}
                           onClick={() => handleImageClick(product)}
                         >
-                          <Image
+                          {
+                            // product.description?<>
+                             <Image
                             alt=""
                             src={product.image_src}
                             width={100}
                             height={100}
+                          //  */}
                           />
+                        
+                          }
+                         
                           {selectedImage === product && (
                             <div className="tick-mark">&#10003;</div>
                           )}
