@@ -2,23 +2,16 @@
   <h2>Table of Contents</h2>
   <ol>
     <li>
-      <a href="#project-description">Project Description</a>
+      <a href="#product-description">Product Description</a>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+      <a href="#state-of-implementation">State of Implementation</a>
     </li>
     <li><a href="#use-cases">Use Cases</a></li>
-    <li><a href="#roadmap">Roadmap - Future Scope</a></li>
     <li>
       <a href="#current-issues-and-limitations">Current Issues and Limitations</a>
-      <ul>
-      <li><a href="#current-issues">Current Issues</a></li>
-      <li><a href="#limitations">Limitations</a></li>
-      </ul>
     </li>
+    <li><a href="#roadmap">Roadmap - Future Scope</a></li>
   </ol>
 
 <div align="center">
@@ -26,18 +19,28 @@
     <a href="https://youtube.com">View Demo</a>
     ·
     <a href="https://youtube.com">Proof of Concept</a>
+    ·
+    <a href="https://github.com/NemesisLW/Grid/issues">Suggest Improvements & Features</a>
   </p>
 </div>
 
 
-<!-- PROJECT DESCRIPTION -->
-## Project Description
+<!-- PRODUCT DESCRIPTION -->
+## Product Description
 
 Elevate your fashion shopping experience with the Conversational Fashion Outfit Generator – a cutting-edge addition to the **Flipkart** ecosystem. Seamlessly integrated into the platform, our AI-powered system redefines the way you discover, create, and personalize fashion outfits.
 
 Powered by advanced Generative AI technology, our outfit generator engages in natural, human-like conversations to truly understand your style preferences. Leveraging your past purchase history, browsing patterns, and real-time social media trends, we deliver tailored and on-trend outfit recommendations that resonate with your unique fashion taste.
 
 Unveil a world of possibilities as you effortlessly explore personalized outfit suggestions for every occasion. From casual outings to formal events, our generator crafts complete, well-coordinated outfits, including clothing, accessories, and footwear. With the option to interact and fine-tune outfits in a conversational manner, you're in control of your style journey.
+
+<!-- STATE OF IMPLEMENTATION -->
+
+## State of Implementation 
+
+  - [x] Natural Conversational Language Queries to Relevant Outfit Suggestion.
+  - [x] User can suggest tweaks to the suggested outfit.
+  - [ ] Complete Outfit Generation, with a simple input. `(e.g. "I will go on a trip to the mountains. Show me everything I need.")`
 
 <!-- USE CASES -->
 ## Use Cases
@@ -48,7 +51,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
      
 **Precise Outfit Coordination for Enhanced Styling:**
   * **Effortless Fashion Coordination:** Users receive comprehensive outfit suggestions based on their preferences, taking into account clothing, accessories, and footwear.
-  * **Upselling and ARPU Boost:** Offering complete outfits boosts Average Revenue Per User (ARPU) as users are more likely to purchase multiple items within a well-coordinated ensemble.
+  * **Upselling and ARPU Boost:** Offering complete outfits boosts Average Revenue Per User (ARPU) and Average Order Value(AOV) as users are more likely to purchase multiple items within a well-coordinated ensemble.
     
 **Real-time Social Media Trend Integration:**
   * **On-Trend Recommendations:** By tapping into social media trends, users stay ahead of the curve with outfit suggestions aligned to the latest fashion styles.
@@ -66,3 +69,54 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 **Seamless Integration with Flipkart's Ecosystem:**
   * **Unified Shopping Experience:** The Conversational Fashion Outfit Generator seamlessly integrates into Flipkart's existing platform, providing users with a holistic shopping journey.
   * **Enhanced Business Metrics:** Improved user engagement, conversion rates, and ARPU directly contribute to elevated profitability and key user analytics.
+
+<!-- CURRENT ISSUES AND LIMITATIONS-->
+## Current Issues and Limitations
+* **Uncertain LLM Hallucination**
+
+| Issue                           | Description                                                  | Solution                                                | 
+| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- | 
+| Context Overload and Noise         |   Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses.  | Experimenting with attention mechanisms or summarization techniques to guide the LLM. |
+| Lack of Information | Self Explanatory. Not Providing The LLM with enough information will lead to incorrect/misleading suggestions | Implement Filter Layers that will evaluate User  Requests for Context. |
+* **User Interface**
+
+<!-- ROADMAP - FUTURE SCOPE -->
+## Roadmap - Future Scope
+
+- [x] **Ideating & Decomposition of Problem Statement**
+  - [x] Figuring out how the solution can be integrate seamlessly into existing Flipkart Infrastructure
+  - [x] Efficient Uses of Resources - Approach to leverage existing Product Recommendation Pipeline
+  - [x] Defining specific usecases
+  - [ ] Iterate
+
+- [x] **Data Preparation**
+  - [x] Collect Sample Flipkart Outfit Inventory Dataset
+  - [x] Preprocess and Organize Data.
+
+- [x] **Prototype User Interface**
+  - [x] Design a basic User Interface
+  - [x] Enable Conversational Product Discovery
+  - [x] Generate Initial Response
+  - [ ] Stylize
+
+- [x] **Prompt Designing & Engineering** 
+- [x] **Intents Extraction & Search LLM Pipeline**
+  - [x] Reformat User Request
+  - [x] Extract Outfit Suggestions
+  - [x] Reformat Suggestions & Search Inventory
+  - [ ] Iterate and Improve
+        
+- [ ] **Vector Database Design** 
+
+- [ ] **Virtual Try On**
+  - [x] Researched Existing Solutions and Proposals
+  - [ ] Implementation
+        
+- [ ] **Integrate into Existing Flipkart Ecosystem**
+  - [ ] :)
+          
+- [ ] **Helpful Features**
+  - [x] Suggested Frequent Requests
+  - [x] Enabled Voice Recognition
+  - [ ]  
+
