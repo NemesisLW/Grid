@@ -78,6 +78,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- | 
 | Context Overload and Noise         |   Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses.  | Experimenting with attention mechanisms or summarization techniques to guide the LLM. |
 | Lack of Information | Self Explanatory. Not Providing The LLM with enough information will lead to incorrect/misleading suggestions | Implement Filter Layers that will evaluate User  Requests for Context. |
+| Inadequate Domain Knowledge | LLMs may lack domain-specific knowledge about fashion, designers, and specific fashion trends, impacting the accuracy of generated recommendations. | Fine-tune LLM with specific domain knowledge and techniques.
 * **User Interface**
 
 <!-- ROADMAP - FUTURE SCOPE -->
