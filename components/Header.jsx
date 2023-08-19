@@ -48,7 +48,7 @@ const Header = () => {
         <Link href="/">
           <Image
             alt="Logo"
-            src="/logo.svg"
+            src="/logo.png"
             width={40}
             height={40}
             className="w-[40px] md:w-[60px]"
