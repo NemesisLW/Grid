@@ -44,7 +44,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 
   - [x] Natural Conversational Language Queries to Relevant Outfit Suggestion.
   - [x] User can suggest tweaks to the suggested outfit.
-  - [ ] Complete Outfit Generation, with a simple input. (e.g. "I will go on a trip to the mountains. Show me everything I need.")
+  - [ ] Complete Outfit Generation, with a simple input. `(e.g. "I will go on a trip to the mountains. Show me everything I need.")`
 
 <!-- USE CASES -->
 ## Use Cases
