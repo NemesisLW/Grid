@@ -51,7 +51,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
      
 **Precise Outfit Coordination for Enhanced Styling:**
   * **Effortless Fashion Coordination:** Users receive comprehensive outfit suggestions based on their preferences, taking into account clothing, accessories, and footwear.
-  * **Upselling and ARPU Boost:** Offering complete outfits boosts Average Revenue Per User (ARPU) as users are more likely to purchase multiple items within a well-coordinated ensemble.
+  * **Upselling and ARPU Boost:** Offering complete outfits boosts Average Revenue Per User (ARPU) and Average Order Value(AOV) as users are more likely to purchase multiple items within a well-coordinated ensemble.
     
 **Real-time Social Media Trend Integration:**
   * **On-Trend Recommendations:** By tapping into social media trends, users stay ahead of the curve with outfit suggestions aligned to the latest fashion styles.
