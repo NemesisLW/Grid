@@ -45,7 +45,9 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
       <div className="flex w-[400px] flex-col mx-20 items-center">
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600">Your Avatar</CardTitle>
+            <CardTitle className="text-blue-600 text-center">
+              Your Avatar
+            </CardTitle>
           </CardHeader>
           {product[0] != undefined &&
           product[1] != undefined &&
@@ -59,7 +61,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                     <Image
                       src={changedproduct.image_src}
                       alt=""
-                      width="auto"
+                      width={100}
                       height={100}
                     />
                   </CardContent>
@@ -86,7 +88,7 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                     <Image
                       src={changedproduct.image_src}
                       alt=""
-                      width="auto"
+                      width={100}
                       height={100}
                     />
                   </CardContent>
@@ -228,7 +230,9 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
         </Card> */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-600 font-title ">Price</CardTitle>
+            <CardTitle className="text-blue-600 font-title text-center ">
+              Price
+            </CardTitle>
           </CardHeader>
           {product[0] != undefined &&
           product[1] != undefined &&
@@ -236,13 +240,13 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
             <>
               <CardContent className="items-center justify-center">
                 <h3>
-                  {product[0].description}:{product[0].price}
+                  {product[0]?.description}:{product[0].price}
                 </h3>
                 <h3>
-                  `{product[1].description}:{product[1].price}
+                  `{product[1]?.description}:{product[1].price}
                 </h3>
                 <h3>
-                  {product[2].description}:{product[2].price}
+                  {product[2]?.description}:{product[2].price}
                 </h3>
                 <h3>Total:{total}</h3>
               </CardContent>
