@@ -23,6 +23,8 @@
     <a href="https://youtube.com">View Demo</a>
     ·
     <a href="https://youtube.com">Proof of Concept</a>
+    ·
+    <a href="https://github.com/NemesisLW/Grid/issues">Suggest Improvements & Features</a>
   </p>
 </div>
 
