@@ -74,7 +74,6 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 ## Current Issues and Limitations
 * **Uncertain LLM Hallucination**
 <br>
-
 | Issue                           | Description                                                  | Solution                                                | 
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- | 
 | Context Overload and Noise         |   Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses.  | Experimenting with attention mechanisms or summarization techniques to guide the LLM. |
