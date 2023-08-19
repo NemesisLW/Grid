@@ -40,12 +40,14 @@ const Chatpage = () => {
         );
         querySnapshotforchangedproducts.forEach((doc) => {
           const brand = "brand"
+
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
           const review ="4.2";
+
           const size = doc.data().size;
           const type = doc.data().product_type;
           Product.push({
@@ -65,16 +67,21 @@ const Chatpage = () => {
         console.log(Product);
       } else {
         const querySnapshotforchangedproducts = await getDocs(
-          collection(db, `filpkartproducts/men/topwear/color/${filterJSON.color}`)
+
+          collection(
+            db,
+            `filpkartproducts/women/${filterJSON.outfit_type}/color/${filterJSON.color}`
+          )
         );
         querySnapshotforchangedproducts.forEach((doc) => {
-          const brand = "brand"
+          const brand = "brand";
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
-          const review ="4.2";
+
+          const review = "4.2";
           const size = doc.data().size;
           const type = doc.data().product_type;
           Product.push({
@@ -130,7 +137,7 @@ const Chatpage = () => {
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `Products/men/bottomwear`)
+        collection(db, `Products/women/bottomwear`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
@@ -162,7 +169,7 @@ const Chatpage = () => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `Products/men/topwear`)
+        collection(db, `Products/women/topwear`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -195,7 +202,7 @@ const Chatpage = () => {
 
     try {
       const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/men/shoes`)
+        collection(db, `Products/women/shoes`)
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
