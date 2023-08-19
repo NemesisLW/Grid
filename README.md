@@ -97,7 +97,7 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
   - [x] Design a basic User Interface
   - [x] Enable Conversational Product Discovery
   - [x] Generate Initial Response
-  - [ ] Stylize
+  - [x] Update Suggested Changes
 
 - [x] **Prompt Designing & Engineering** 
 - [x] **Intents Extraction & Search LLM Pipeline**
