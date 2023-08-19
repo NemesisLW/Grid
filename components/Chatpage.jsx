@@ -8,14 +8,10 @@ import { mensformalpantblack } from "@/constants/MensFormalPantsBlack";
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 
-
-
 const Chatpage = () => {
-
   const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
   const [changedproductype, setchangedproducttype] = useState("");
- 
 
   const callSuggestionLLM = async () => {
     const currentUserRequest = useStore.getState().currentRequest;
@@ -39,14 +35,14 @@ const Chatpage = () => {
           collection(db, `filpkartproducts/men/topwear/color/blue`)
         );
         querySnapshotforchangedproducts.forEach((doc) => {
-          const brand = "brand"
+          const brand = "brand";
 
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
-          const review ="4.2";
+          const review = "4.2";
 
           const size = doc.data().size;
           const type = doc.data().product_type;
@@ -67,10 +63,9 @@ const Chatpage = () => {
         console.log(Product);
       } else {
         const querySnapshotforchangedproducts = await getDocs(
-
           collection(
             db,
-            `filpkartproducts/women/${filterJSON.outfit_type}/color/${filterJSON.color}`
+            `filpkartproducts/men/${filterJSON.outfit_type}/color/${filterJSON.color}`
           )
         );
         querySnapshotforchangedproducts.forEach((doc) => {
@@ -137,7 +132,7 @@ const Chatpage = () => {
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `Products/women/bottomwear`)
+        collection(db, `Products/men/bottomwear`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
@@ -169,7 +164,7 @@ const Chatpage = () => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `Products/women/topwear`)
+        collection(db, `Products/men/topwear`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -202,7 +197,7 @@ const Chatpage = () => {
 
     try {
       const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/women/shoes`)
+        collection(db, `Products/men/shoes`)
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
