@@ -2,16 +2,12 @@
   <h2>Table of Contents</h2>
   <ol>
     <li>
-      <a href="#project-description">Project Description</a>
+      <a href="#product-description">Product Description</a>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+      <a href="#state-of-implementation">State of Implementation</a>
     </li>
     <li><a href="#use-cases">Use Cases</a></li>
-    <li><a href="#roadmap">Roadmap - Future Scope</a></li>
     <li>
       <a href="#current-issues-and-limitations">Current Issues and Limitations</a>
       <ul>
@@ -19,6 +15,7 @@
       <li><a href="#limitations">Limitations</a></li>
       </ul>
     </li>
+    <li><a href="#roadmap">Roadmap - Future Scope</a></li>
   </ol>
 
 <div align="center">
@@ -30,14 +27,22 @@
 </div>
 
 
-<!-- PROJECT DESCRIPTION -->
-## Project Description
+<!-- PRODUCT DESCRIPTION -->
+## Product Description
 
 Elevate your fashion shopping experience with the Conversational Fashion Outfit Generator – a cutting-edge addition to the **Flipkart** ecosystem. Seamlessly integrated into the platform, our AI-powered system redefines the way you discover, create, and personalize fashion outfits.
 
 Powered by advanced Generative AI technology, our outfit generator engages in natural, human-like conversations to truly understand your style preferences. Leveraging your past purchase history, browsing patterns, and real-time social media trends, we deliver tailored and on-trend outfit recommendations that resonate with your unique fashion taste.
 
 Unveil a world of possibilities as you effortlessly explore personalized outfit suggestions for every occasion. From casual outings to formal events, our generator crafts complete, well-coordinated outfits, including clothing, accessories, and footwear. With the option to interact and fine-tune outfits in a conversational manner, you're in control of your style journey.
+
+<!-- STATE OF IMPLEMENTATION -->
+
+## State of Implementation 
+
+  - [x] Natural Conversational Language Queries to Relevant Outfit Suggestion.
+  - [x] User can suggest tweaks to the suggested outfit.
+  - [ ] Complete Outfit Generation, with a simple input. (e.g. "I will go on a trip to the mountains. Show me everything I need.")
 
 <!-- USE CASES -->
 ## Use Cases
@@ -66,3 +71,35 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 **Seamless Integration with Flipkart's Ecosystem:**
   * **Unified Shopping Experience:** The Conversational Fashion Outfit Generator seamlessly integrates into Flipkart's existing platform, providing users with a holistic shopping journey.
   * **Enhanced Business Metrics:** Improved user engagement, conversion rates, and ARPU directly contribute to elevated profitability and key user analytics.
+
+<!-- ROADMAP - FUTURE SCOPE -->
+## Roadmap - Future Scope
+
+- [x] **Ideating & Decomposition of Problem Statement**
+  - [x] Figuring out how the solution can be integrate seamlessly into existing Flipkart Ecosystem.
+  - [x] Defining specific usecases
+  - [ ] Iterate
+
+- [x] **Data Preparation**
+  - [x] Collect Sample Flipkart Outfit Inventory Dataset
+  - [x] Preprocess and Organize Data.
+
+- [x] **Prototype User Interface**
+  - [x] Design a basic User Interface
+  - [x] Enable Conversational Product Discovery
+  - [x] Generate Initial Response
+
+- [x] **Intents Extraction & Search LLM Pipeline**
+  - [x] Reformat User Request
+  - [x] Extract Outfit Suggestions
+  - [x] Reformat Suggestions & Search Inventory
+  - [ ] Iterate and Improve 
+
+- [ ] **Virtual Try On**
+  - [x] Researched Existing Solutions and Proposals
+  - [ ] Implementation
+          
+- [] **Helpful Features**
+  - [x] Suggested Frequent Requests
+  - [x] Enabled Voice Recognition    
+
