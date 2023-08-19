@@ -73,10 +73,10 @@ Unveil a world of possibilities as you effortlessly explore personalized outfit 
 <!-- CURRENT ISSUES AND LIMITATIONS-->
 ## Current Issues and Limitations
 * **Uncertain LLM Hallucination**
-| Issue                      	| Description                                                                                                                                 	| Solution                                                                              	|
-|----------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------	|
-| Context Overload and Noise 	| Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses. 	| Experimenting with attention mechanisms or  summarization techniques to guide the LLM 	|
-| Lack of Information        	| Self Explanatory. Not Providing The LLM with enough information will lead to incorrect/misleading suggestions                               	| Implement Filter Layers that will Evaluate User  Requests for context                 	|
+| Issue                      | Description                                                                                                                                 | Solution                                                                              |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| Context Overload and Noise | Providing a large amount of data about the user can potentially confuse the Language Model (LLM) and lead to noisy or irrelevant responses. | Experimenting with attention mechanisms or  summarization techniques to guide the LLM |
+| Lack of Information        | Self Explanatory. Not Providing The LLM with enough information will lead to incorrect/misleading suggestions                               | Implement Filter Layers that will Evaluate User  Requests for context|                                                 
 * **User Interface**
 
 <!-- ROADMAP - FUTURE SCOPE -->
