@@ -47,7 +47,7 @@ take into account the user's gender, favorite colors, preferred styles, and any 
 - GENDER: Female
 - AGE: 21
 - LOCATION: MUMBAI
-- Favorite color - Pink
+- Favorite color - Blue
 
 # USER REQUEST
 
@@ -64,7 +64,7 @@ Your output format should only be the JSON Object. You should not generate any o
 # RULES
 - In our Database, there are only the following key values present:  "id", "name", "brand", "type", "outfit_type", "size", "color", "price".  Make sure the JSON does not contain keys with different names. 
 - The JSON Object you generate must have values for the following keys: "outfit_type", "price", "color".
-- "outfit_type" key can have only one of the following values: {{"bottomwear", "topwear", "shoes"}}
+- "outfit_type" key can have only one of the following values: {{"bottomwear", "topwear", "shoes", "jeans", "kurta", "saree"}}
 - "price" key should always be a number.
 
 # USER REQUEST

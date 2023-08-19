@@ -31,21 +31,19 @@ const Chatpage = () => {
     setchangedproducttype(filterJSON.outfit_type);
     try {
       if (filterJSON.color == "any" || filterJSON.color == "undefined") {
-        const q = query(
-          collection(db, `Products/men/${filterJSON.outfit_type}`),
-          where("color", "==", `black`)
+        const querySnapshotforchangedproducts = await getDocs(
+          collection(db, `filpkartproducts/women/topwear/color/blue`)
         );
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          const brand = doc.data().brand;
+        querySnapshotforchangedproducts.forEach((doc) => {
+          const brand = "brand";
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
-          const review = doc.data().review;
+          const review = "4.2";
           const size = doc.data().size;
-          const type = doc.data().type;
+          const type = doc.data().product_type;
           Product.push({
             id: doc.id,
             brand: brand,
@@ -62,21 +60,22 @@ const Chatpage = () => {
         setproduct(Product);
         console.log(Product);
       } else {
-        const qu = query(
-          collection(db, `Products/men/${filterJSON.outfit_type}`),
-          where("color", "==", `black`)
+        const querySnapshotforchangedproducts = await getDocs(
+          collection(
+            db,
+            `filpkartproducts/women/${filterJSON.outfit_type}/color/${filterJSON.color}`
+          )
         );
-        const querySnapshot = await getDocs(qu);
-        querySnapshot.forEach((doc) => {
-          const brand = doc.data().brand;
+        querySnapshotforchangedproducts.forEach((doc) => {
+          const brand = "brand";
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
-          const review = doc.data().review;
+          const review = "4.2";
           const size = doc.data().size;
-          const type = doc.data().type;
+          const type = doc.data().product_type;
           Product.push({
             id: doc.id,
             brand: brand,
@@ -130,7 +129,7 @@ const Chatpage = () => {
   const fetchingproducts = async () => {
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `Products/men/bottomwear`)
+        collection(db, `Products/women/bottomwear`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
@@ -162,7 +161,7 @@ const Chatpage = () => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `Products/men/topwear`)
+        collection(db, `Products/women/topwear`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -192,9 +191,10 @@ const Chatpage = () => {
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
+
     try {
       const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/men/shoes`)
+        collection(db, `Products/women/shoes`)
       );
 
       querySnapshotfortopshoes.forEach((doc) => {

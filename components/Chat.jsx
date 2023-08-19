@@ -136,7 +136,7 @@ const Chat = ({ products, setProduct }) => {
                 <div>
                   {message.role === "assistant" && (
                     <div className="flex ">
-                      {products.map((product) => (
+                      {products.slice(0, 4).map((product) => (
                         <div
                           key={product.image_src}
                           className={`image-container ${
