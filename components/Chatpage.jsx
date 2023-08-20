@@ -9,9 +9,6 @@ import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 import ChatBubble from "./ChatBubble";
 
-
-
-
 const Chatpage = ({show ,gender}) => {
 
   const [userRequest, setUserRequest] = useState("");
@@ -41,14 +38,14 @@ const Chatpage = ({show ,gender}) => {
           collection(db, `filpkartproducts/${gender}/topwear/color/blue`)
         );
         querySnapshotforchangedproducts.forEach((doc) => {
-          const brand = "brand"
+          const brand = "brand";
 
           const color = doc.data().color;
           const description = doc.data().description;
           const image_src = doc.data().image_src;
           const link = doc.data().link;
           const price = doc.data().price;
-          const review ="4.2";
+          const review = "4.2";
 
           const size = doc.data().size;
           const type = doc.data().product_type;
@@ -69,10 +66,10 @@ const Chatpage = ({show ,gender}) => {
         console.log(Product);
       } else {
         const querySnapshotforchangedproducts = await getDocs(
-
           collection(
             db,
             `filpkartproducts/${gender}/${filterJSON.outfit_type}/color/${filterJSON.color}`
+
           )
         );
         querySnapshotforchangedproducts.forEach((doc) => {
@@ -173,6 +170,7 @@ const Chatpage = ({show ,gender}) => {
     try {
       const querySnapshotfortopwear = await getDocs(
         collection(db, `Products/${gender}/topwear`)
+
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -206,6 +204,7 @@ const Chatpage = ({show ,gender}) => {
     try {
       const querySnapshotfortopshoes = await getDocs(
         collection(db, `Products/${gender}/shoes`)
+
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
