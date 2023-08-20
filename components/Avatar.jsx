@@ -14,13 +14,7 @@ import {
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({
-  show,
-  total,
-  product,
-  changedproduct,
-  changedproducttype,
-}) => {
+const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
