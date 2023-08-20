@@ -12,6 +12,7 @@ import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
 import { useState } from "react";
 import Chatwomen from "./Chatwomen";
+import { Card, CardHeader } from "./ui/card";
 
 const Landing = () => {
   const [gender, setgender] = useState("men");
@@ -34,19 +35,23 @@ const Landing = () => {
             Gearing up for Diwali with your personalised taste.
           </div>
         </div>{" "}
-        <div className="text-md md:text-xl  flex flex-row">
-          <Link href="/avatar/men">
-            <div>
-              {/* <Avatar/> */}
-              <Chatpage show={false} gender={gender} />
-            </div>
-          </Link>
-          <Link href="/avatar/women">
-            <div>
-              {/* <Avatar/> */}
-              <Chatwomen show={false} gender="women" />
-            </div>
-          </Link>
+        <div className="text-md md:text-xl flex flex-row">
+          <div>
+            <Link href="/avatar/men">
+              <CardHeader className="text-center">Men</CardHeader>
+              <div>
+                <Chatpage show={false} gender={gender} />
+              </div>
+            </Link>
+          </div>
+          <div>
+            <Link href="/avatar/women">
+              <div>
+                {/* <Avatar/> */}
+                <Chatwomen show={false} gender="women" />
+              </div>
+            </Link>
+          </div>
         </div>
         {/* heading and paragaph end */}
         {/* products grid start */}

@@ -133,7 +133,7 @@ const Chatpage = ({ show, gender }) => {
 
   const fetchingproducts = async () => {
     console.log(gender);
-    
+
     try {
       const querySnapshotforboottomwear = await getDocs(
         collection(db, `filpkartproducts/${gender}/bottomwear/color/black`)
@@ -255,7 +255,11 @@ const Chatpage = ({ show, gender }) => {
     setshowed(!showed);
   };
   return (
-    <div className="flex bg-slate-50  min-h-screen items-center justify-center">
+    <div
+      className={`flex  bg-slate-50  ${
+        show ? "min-h-screen items-center justify-center" : <></>
+      } `}
+    >
       <Avatar
         show={show}
         product={allproducts}
