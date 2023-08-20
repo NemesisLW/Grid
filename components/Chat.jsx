@@ -25,7 +25,7 @@ import { useState, useEffect } from "react";
 import { useStore } from "@/store/store";
 import { Mic } from "lucide-react";
 
-const Chat = ({ products, setProduct }) => {
+const Chat = ({ products, setProduct  }) => {
   // Streaming AI Primary Response
   const {
     messages,

@@ -13,7 +13,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
 import Image from "next/image";
 
-const Header = () => {
+const Header = ({changegender ,gender}) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("translate-y-0");
@@ -32,7 +32,7 @@ const Header = () => {
     }
     setLastScrollY(window.scrollY);
   };
-
+ 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
     return () => {
@@ -42,7 +42,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[80px] bg-flipkart flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
+      className={`w-full h-[50px] md:h-[80px] bg-flipkart flex items-center justify-between z-20 sticky  transition-transform shadow-2xl ring-offset-2 ring-opacity-50 mb-8 duration-300 ${show}`}
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         <Link href="/">
@@ -71,6 +71,7 @@ const Header = () => {
         )}
 
         <div className="flex items-center gap-2 text-black">
+        <button onClick={changegender}>{gender}</button>
           {/* Icon start */}
           <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
             <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
@@ -79,7 +80,7 @@ const Header = () => {
             </div>
           </div>
           {/* Icon end */}
-
+        
           {/* Icon start */}
           <Link href="/cart">
             <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
@@ -94,7 +95,7 @@ const Header = () => {
           {/* Icon end */}
 
           {/* Mobile icon start */}
-          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
+          <div className="w-10 md:w-6 h-12md:h-12   flex md:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
             {mobileMenu ? (
               <VscChromeClose
                 className="text-[16px]"
