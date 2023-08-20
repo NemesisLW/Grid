@@ -32,7 +32,7 @@ const Landing = () => {
         {/* heading and paragaph start */}
         <div className="text-center -mx-10  md:my-[80px]">
           <div className="text-left text-[28px] md:text-[28px] mb-5 font-semibold leading-tight">
-            Gearing up for Diwali with your personalised taste.
+            Your handpicked Summer Collection
           </div>
         </div>{" "}
         <div className="text-md md:text-xl flex flex-row">
@@ -46,6 +46,7 @@ const Landing = () => {
           </div>
           <div>
             <Link href="/avatar/women">
+              <CardHeader className="text-center">Women</CardHeader>
               <div>
                 {/* <Avatar/> */}
                 <Chatwomen show={false} gender="women" />

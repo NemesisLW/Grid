@@ -28,7 +28,6 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
         0
       );
       setTotal(totalPrice);
-     
     }
   }, [product]);
   const [id, setid] = useState(0);
@@ -39,35 +38,41 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
 
   return (
     <>
-      <div className={`flex w-[600px]  flex-row mx-10 items-center `}>
-        {product[0] != undefined &&
-        product[1] != undefined 
-        ? (
+      <div className={`flex w-[600px] flex-row mx-10 items-center `}>
+        {product[0] != undefined && product[1] != undefined ? (
           <div className="flex flex-row">
-            <div className={` mx-0 ${show?"basis-1/6 h-[450px]":"flex flex-row h-[180px]"}   w-[250px] `}>
-              <Card className={`py-16 ${show?"":"flex flex-row"} `}>
-                <div >
+            <div
+              className={` mx-0 ${
+                show ? "basis-1/6 h-[450px]" : "flex flex-row"
+              }   w-[250px] `}
+            >
+              <Card className={`py-16 ${show ? "" : "flex flex-row"} `}>
+                <div>
                   {changedproduct.image_src != undefined &&
                   changedproducttype == "topwear" ? (
                     <>
-                      {" "}
-                      <CardContent className="items-center h-[150px] justify-center"  onClick={() => changedid(0)}>
+                      <CardContent
+                        className="items-center h-[150px] justify-center"
+                        onClick={() => changedid(0)}
+                      >
                         <Image
                           src={changedproduct.image_src}
                           alt=""
-                          width={100}
+                          width={150}
                           height={100}
                         />
                       </CardContent>
                     </>
                   ) : (
                     <>
-                      {" "}
-                      <CardContent className="items-center h-[150px] justify-center" onClick={() => changedid(0)}>
+                      <CardContent
+                        className="items-center h-[90px] justify-center"
+                        onClick={() => changedid(0)}
+                      >
                         <Image
                           src={product[0].image_src}
                           alt=""
-                          width={100}
+                          width={150}
                           height={100}
                         />
                       </CardContent>
@@ -75,12 +80,15 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
                   )}
                 </div>
 
-                <div >
+                <div>
                   {changedproduct.image_src != undefined &&
                   changedproducttype == "jeans" ? (
                     <>
                       {" "}
-                      <CardContent className="items-center justify-center"  onClick={() => changedid(1)}>
+                      <CardContent
+                        className="items-center justify-center"
+                        onClick={() => changedid(1)}
+                      >
                         <Image
                           src={changedproduct.image_src}
                           alt=""
@@ -92,7 +100,10 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
                   ) : (
                     <>
                       {" "}
-                      <CardContent className="items-center justify-center"  onClick={() => changedid(1)}>
+                      <CardContent
+                        className="items-center justify-center"
+                        onClick={() => changedid(1)}
+                      >
                         <Image
                           src={product[1].image_src}
                           alt=""
@@ -103,7 +114,6 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
                     </>
                   )}
                 </div>
-              
 
                 {/* <CardFooter>
                 <div className="flex gap-5">
@@ -122,7 +132,11 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
               </CardFooter> */}
               </Card>
             </div>
-            <div className={`basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ${show?<></>:"hidden"} `}>
+            <div
+              className={`basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ${
+                show ? <></> : "hidden"
+              } `}
+            >
               <Tabs defaultValue="account" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="account">Suggested Product</TabsTrigger>
@@ -131,32 +145,39 @@ const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
                 <TabsContent value="account">
                   <Card>
                     <CardContent className="pt-10">
-                    
-                      {changedproduct.image_src != "undefined"?
-                      <>
-                      {((changedproducttype == "topwear"&&id==0 )||(changedproducttype == "jeans"&&id ==1) )?<>
-                      <Image
-                        src={changedproduct.image_src}
-                        alt=""
-                        width={500}
-                        height={500}
-                      />
-                      </>:<>
-                      <Image
-                        src={product[id].image_src}
-                        alt=""
-                        width={500}
-                        height={500}
-                      />
-                      </>}
-                      </>:<>
-                      <Image
-                        src={product[id].image_src}
-                        alt=""
-                        width={500}
-                        height={500}
-                      />
-                      </>}
+                      {changedproduct.image_src != "undefined" ? (
+                        <>
+                          {(changedproducttype == "topwear" && id == 0) ||
+                          (changedproducttype == "jeans" && id == 1) ? (
+                            <>
+                              <Image
+                                src={changedproduct.image_src}
+                                alt=""
+                                width={500}
+                                height={500}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <Image
+                                src={product[id].image_src}
+                                alt=""
+                                width={500}
+                                height={500}
+                              />
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <Image
+                            src={product[id].image_src}
+                            alt=""
+                            width={500}
+                            height={500}
+                          />
+                        </>
+                      )}
                     </CardContent>
                   </Card>
                 </TabsContent>

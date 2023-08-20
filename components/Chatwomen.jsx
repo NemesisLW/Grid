@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
@@ -135,7 +134,7 @@ const Chatwomen = ({ show, gender }) => {
 
   const fetchingproducts = async () => {
     console.log(gender);
-    
+
     try {
       const querySnapshotforboottomwear = await getDocs(
         collection(db, `filpkartproducts/women/jeans/color/black`)
@@ -143,15 +142,15 @@ const Chatwomen = ({ show, gender }) => {
 
       querySnapshotforboottomwear.forEach((doc) => {
         const brand = "brand";
-          const color = doc.data().color;
-          const description = doc.data().description;
-          const image_src = doc.data().image_src;
-          const link = doc.data().link;
-          const price = doc.data().price;
+        const color = doc.data().color;
+        const description = doc.data().description;
+        const image_src = doc.data().image_src;
+        const link = doc.data().link;
+        const price = doc.data().price;
 
-          const review = "4.2";
-          const size = doc.data().size;
-          const type = doc.data().product_type;
+        const review = "4.2";
+        const size = doc.data().size;
+        const type = doc.data().product_type;
         bottowear_product.push({
           id: doc.id,
           brand: brand,
@@ -171,11 +170,10 @@ const Chatwomen = ({ show, gender }) => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `filpkartproducts/women/topwear/color/black`)
+        collection(db, `filpkartproducts/women/topwear/color/yellow`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
-     
         const brand = "brand";
         const color = doc.data().color;
         const description = doc.data().description;
@@ -203,16 +201,12 @@ const Chatwomen = ({ show, gender }) => {
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
-
-  
   };
   if (
     topwear != [] &&
     bottomwear != [] &&
-   
     topwear != "undefined" &&
-    bottomwear != "undefined" 
-  
+    bottomwear != "undefined"
   ) {
     allproducts.push(topwear[0], bottomwear[0]);
   }
@@ -227,7 +221,7 @@ const Chatwomen = ({ show, gender }) => {
   };
   return (
     <div
-      className={`flex  bg-slate-50  ${
+      className={`flex bg-slate-50  ${
         show ? "min-h-screen items-center justify-center" : <></>
       } `}
     >
@@ -237,16 +231,13 @@ const Chatwomen = ({ show, gender }) => {
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
       />
-      <button onClick={onshowed}>
-        {" "}
-        {/* <ChatBubble /> */}
-      </button>
+      <button onClick={onshowed}> {/* <ChatBubble /> */}</button>
       {show ? (
         <>
           {/* {showed ? (
             <> */}
-              <Chat products={product} setProduct={setProduct} />
-            {/* </>
+          <Chat products={product} setProduct={setProduct} />
+          {/* </>
           ) : (
             <></>
           )}{" "} */}
