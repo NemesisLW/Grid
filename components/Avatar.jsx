@@ -18,10 +18,21 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
+
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (product && product.length > 0) {
+      const totalPrice = product.reduce(
+        (totalP, item) => totalP + parseFloat(item?.price),
+        0
+      );
+      setTotal(totalPrice);
+    }
+  }, [product]);
+
   console.log(changedproducttype);
-      
-  const [total, settotal] = useState(0);
-   
+
   return (
     <>
       <div className={`flex w-[1000px]  flex-row mx-10 items-center `}>
@@ -142,70 +153,45 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
               </Card>
             </div>
             {show ? (
-              <>
-                <div className="w-[400px]">
-                  {product[0] != undefined &&
-                  product[1] != undefined &&
-                  product[2] != undefined ? (
-                    <>
-                      <div className="w-[400px] rounded-md p-6">
-                        <h2 className="text-xl font-semibold mb-4">
-                          Product Prices
-                        </h2>
+              <div className="w-[400px]">
+                {product[0] != undefined &&
+                product[1] != undefined &&
+                product[2] != undefined ? (
+                  <>
+                    <div className="w-[400px] rounded-md p-6">
+                      <h2 className="text-xl font-semibold mb-4">
+                        Product Prices
+                      </h2>
 
-                        {product.map((productcard, index) =>{ 
-                         
-                        
-                        //   return 
-                        //   (
-                        
-                          
-                        //   <div key={index} className="mb-2">
-                        //     <p className="text-gray-600 mb-1">
-                        //       {productcard.description}
-                        //     </p>
-                        //     <p className="text-lg font-semibold">
-                        //       ${productcard.price}
-                        //     </p>
-                        //   </div>
-                        // )
-                      }
-                        )}
-                        {product.map((productcard, index) =>{ 
-                          
-                        
-                        
-                          
-                          <div key={index} className="mb-2">
-                            <p className="text-gray-600 mb-1">
-                              {productcard.description}
-                            </p>
-                            <p className="text-lg font-semibold">
-                              ${productcard.price}
-                            </p>
-                          </div>
-                        
-                      }
-                        )}
-                        <hr className="my-3" />
-                        <p className="text-xl font-semibold mb-2">
-                          Total Price: $0
-                        </p>
-                        <p className="text-green-600 text-sm">
-                  You can get a 15% discount if you buy all these products together!
-                </p>
-                <p className="text-xl font-semibold mt-2">
-                  Discounted Price: ${total - total * 0.15}
-                </p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Loader2 className="mr-6 h-16 w-16 animate-spin" />
-                    </>
-                  )}
-                </div>
-              </>
+                      {product.map((productcard, index) => (
+                        <div key={index} className="mb-2">
+                          <p className="text-gray-600 mb-1">
+                            {productcard.description}
+                          </p>
+                          <p className="text-lg font-semibold">
+                            ₹{productcard.price}
+                          </p>
+                        </div>
+                      ))}
+                      <hr className="my-3" />
+                      <p className="text-xl font-semibold mb-2">
+                        Total Price: ₹{total}
+                      </p>
+                      <p className="text-green-600 text-sm">
+                        You can get a 15% discount if you buy all these products
+                        together!
+                      </p>
+                      <p className="text-xl font-semibold mt-2">
+                        Discounted Price: ₹{total - total * 0.15}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Loader2 className="mr-6 h-16 w-16 animate-spin" />
+                  </>
+                )}
+              </div>
             ) : (
               <></>
             )}
