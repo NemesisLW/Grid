@@ -14,14 +14,26 @@ import {
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
+const Avatar = ({
+  show,
+  total,
+  product,
+  changedproduct,
+  changedproducttype,
+}) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
+
+  // useEffect(() => {
+  //   // Calculate the total price whenever the product array changes
+  //   if (product && product.length > 0) {
+  //     const totalPrice = product.reduce((acc, curr) => acc + curr.price, 0);
+  //     settotal(totalPrice);
+  //   }
+  // }, [product])
   console.log(changedproducttype);
-      
-  const [total, settotal] = useState(0);
-   
+
   return (
     <>
       <div className={`flex w-[1000px]  flex-row mx-10 items-center `}>
@@ -153,29 +165,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                           Product Prices
                         </h2>
 
-                        {product.map((productcard, index) =>{ 
-                         
-                        
-                        //   return 
-                        //   (
-                        
-                          
-                        //   <div key={index} className="mb-2">
-                        //     <p className="text-gray-600 mb-1">
-                        //       {productcard.description}
-                        //     </p>
-                        //     <p className="text-lg font-semibold">
-                        //       ${productcard.price}
-                        //     </p>
-                        //   </div>
-                        // )
-                      }
-                        )}
-                        {product.map((productcard, index) =>{ 
-                          
-                        
-                        
-                          
+                        {product.map((productcard, index) => (
                           <div key={index} className="mb-2">
                             <p className="text-gray-600 mb-1">
                               {productcard.description}
@@ -184,19 +174,26 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                               ${productcard.price}
                             </p>
                           </div>
-                        
-                      }
-                        )}
+                        ))}
                         <hr className="my-3" />
                         <p className="text-xl font-semibold mb-2">
-                          Total Price: $0
+                          Total Price: ${total}
                         </p>
                         <p className="text-green-600 text-sm">
-                  You can get a 15% discount if you buy all these products together!
-                </p>
-                <p className="text-xl font-semibold mt-2">
-                  Discounted Price: ${total - total * 0.15}
-                </p>
+                          You can get a 15% discount if you buy all these
+                          products together!
+                        </p>
+                        <p className="text-xl font-semibold mt-2">
+                          Discounted Price: ${total - total * 0.15}
+                        </p>
+                        <p className="text-green-600 text-sm">
+                          Dont like your recommened product
+                        </p>
+                        <div className="fixed ">
+                          <button className="bg-blue-500 my-5 hover:bg-blue-600 text-white rounded p-5 shadow-md transition-transform transform hover:scale-105">
+                            chat with our personalised ai
+                          </button>
+                        </div>
                       </div>
                     </>
                   ) : (

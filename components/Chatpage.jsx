@@ -236,8 +236,12 @@ const Chatpage = ({show ,gender}) => {
       console.log("Error getting cached document:", e);
     }
   };
-  if (topwear != [] && bottomwear != [] && shoes != []) {
+  const [total,settotal ] =useState(0);
+  if (topwear != [] && bottomwear != [] && shoes != [] &&topwear !="undefined" && bottomwear!= "undefined"&& shoes!="undefined") {
     allproducts.push(topwear[0], bottomwear[0], shoes[0]);
+    // const Total = topwear[0].price+bottomwear[0].price+shoes[0].price
+    // settotal(Total)
+    console.log(topwear[0]);
   }
 
   const [changedproductforchat, setchangedproductforchat] = useState([]);
@@ -256,7 +260,7 @@ const Chatpage = ({show ,gender}) => {
         product={allproducts}
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
-        
+        total={total}
       />
       <button onClick={onshowed}> <ChatBubble/></button>
       {show?<>{
