@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
@@ -8,8 +9,9 @@ import { mensformalpantblack } from "@/constants/MensFormalPantsBlack";
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 import ChatBubble from "./ChatBubble";
+import Avatarwomen from "./Avatarwomen";
 
-const Chatpage = ({ show, gender }) => {
+const Chatwomen = ({ show, gender }) => {
   const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
   const [changedproductype, setchangedproducttype] = useState("");
@@ -34,7 +36,7 @@ const Chatpage = ({ show, gender }) => {
     try {
       if (filterJSON.color == "any" || filterJSON.color == "undefined") {
         const querySnapshotforchangedproducts = await getDocs(
-          collection(db, `filpkartproducts/${gender}/topwear/color/blue`)
+          collection(db, `filpkartproducts/women/topwear/color/blue`)
         );
         querySnapshotforchangedproducts.forEach((doc) => {
           const brand = "brand";
@@ -136,20 +138,20 @@ const Chatpage = ({ show, gender }) => {
     
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `filpkartproducts/${gender}/bottomwear/color/black`)
+        collection(db, `filpkartproducts/women/jeans/color/black`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
         const brand = "brand";
-        const color = doc.data().color;
-        const description = doc.data().description;
-        const image_src = doc.data().image_src;
-        const link = doc.data().link;
-        const price = doc.data().price;
+          const color = doc.data().color;
+          const description = doc.data().description;
+          const image_src = doc.data().image_src;
+          const link = doc.data().link;
+          const price = doc.data().price;
 
-        const review = "4.2";
-        const size = doc.data().size;
-        const type = doc.data().product_type;
+          const review = "4.2";
+          const size = doc.data().size;
+          const type = doc.data().product_type;
         bottowear_product.push({
           id: doc.id,
           brand: brand,
@@ -169,10 +171,11 @@ const Chatpage = ({ show, gender }) => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `filpkartproducts/${gender}/topwear/color/black`)
+        collection(db, `filpkartproducts/women/topwear/color/black`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
+     
         const brand = "brand";
         const color = doc.data().color;
         const description = doc.data().description;
@@ -201,49 +204,17 @@ const Chatpage = ({ show, gender }) => {
       console.log("Error getting cached document:", e);
     }
 
-    try {
-      const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/${gender}/shoes`)
-      );
-
-      querySnapshotfortopshoes.forEach((doc) => {
-        const brand = "brand";
-        const color = doc.data().color;
-        const description = doc.data().description;
-        const image_src = doc.data().image_src;
-        const link = doc.data().link;
-        const price = doc.data().price;
-
-        const review = "4.2";
-        const size = doc.data().size;
-        const type = doc.data().product_type;
-        shoes_product.push({
-          id: doc.id,
-          brand: brand,
-          color: color,
-          description: description,
-          image_src: image_src,
-          link: link,
-          price: price,
-          review: review,
-          size: size,
-          type: type,
-        });
-      });
-      setshoes(shoes_product);
-    } catch (e) {
-      console.log("Error getting cached document:", e);
-    }
+  
   };
   if (
     topwear != [] &&
     bottomwear != [] &&
-    shoes != [] &&
+   
     topwear != "undefined" &&
-    bottomwear != "undefined" &&
-    shoes != "undefined"
+    bottomwear != "undefined" 
+  
   ) {
-    allproducts.push(topwear[0], bottomwear[0], shoes[0]);
+    allproducts.push(topwear[0], bottomwear[0]);
   }
 
   const [changedproductforchat, setchangedproductforchat] = useState([]);
@@ -255,17 +226,30 @@ const Chatpage = ({ show, gender }) => {
     setshowed(!showed);
   };
   return (
-    <div className="flex bg-slate-50  min-h-screen items-center justify-center">
-      <Avatar
+    <div
+      className={`flex  bg-slate-50  ${
+        show ? "min-h-screen items-center justify-center" : <></>
+      } `}
+    >
+      <Avatarwomen
         show={show}
         product={allproducts}
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
       />
-      <button onClick={onshowed}> {/* <ChatBubble /> */}</button>
+      <button onClick={onshowed}>
+        {" "}
+        {/* <ChatBubble /> */}
+      </button>
       {show ? (
         <>
-          <Chat products={product} setProduct={setProduct} />
+          {/* {showed ? (
+            <> */}
+              <Chat products={product} setProduct={setProduct} />
+            {/* </>
+          ) : (
+            <></>
+          )}{" "} */}
         </>
       ) : (
         <></>
@@ -274,4 +258,4 @@ const Chatpage = ({ show, gender }) => {
   );
 };
 
-export default Chatpage;
+export default Chatwomen;

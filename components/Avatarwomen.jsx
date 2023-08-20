@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
+const Avatarwomen = ({ show, product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
@@ -28,6 +28,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
         0
       );
       setTotal(totalPrice);
+     
     }
   }, [product]);
   const [id, setid] = useState(0);
@@ -38,26 +39,19 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
 
   return (
     <>
-      <div className={`flex w-[600px] flex-row mx-10 items-center `}>
+      <div className={`flex w-[600px]  flex-row mx-10 items-center `}>
         {product[0] != undefined &&
-        product[1] != undefined &&
-        product[2] != undefined ? (
+        product[1] != undefined 
+        ? (
           <div className="flex flex-row">
-            <div
-              className={` mx-0 ${
-                show ? "basis-1/6 h-[450px]" : "flex flex-row h-[150px]"
-              }   w-[250px] `}
-            >
-              <Card className={`py-16 ${show ? "" : "flex flex-row"} `}>
-                <div>
+            <div className={` mx-0 ${show?"basis-1/6 h-[450px]":"flex flex-row h-[180px]"}   w-[250px] `}>
+              <Card className={`py-16 ${show?"":"flex flex-row"} `}>
+                <div >
                   {changedproduct.image_src != undefined &&
                   changedproducttype == "topwear" ? (
                     <>
                       {" "}
-                      <CardContent
-                        className="items-center h-[150px] justify-center"
-                        onClick={() => changedid(0)}
-                      >
+                      <CardContent className="items-center h-[150px] justify-center"  onClick={() => changedid(0)}>
                         <Image
                           src={changedproduct.image_src}
                           alt=""
@@ -69,10 +63,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                   ) : (
                     <>
                       {" "}
-                      <CardContent
-                        className="items-center h-[150px] justify-center"
-                        onClick={() => changedid(0)}
-                      >
+                      <CardContent className="items-center h-[150px] justify-center" onClick={() => changedid(0)}>
                         <Image
                           src={product[0].image_src}
                           alt=""
@@ -84,15 +75,12 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                   )}
                 </div>
 
-                <div>
+                <div >
                   {changedproduct.image_src != undefined &&
-                  changedproducttype == "bottomwear" ? (
+                  changedproducttype == "jeans" ? (
                     <>
                       {" "}
-                      <CardContent
-                        className="items-center justify-center"
-                        onClick={() => changedid(1)}
-                      >
+                      <CardContent className="items-center justify-center"  onClick={() => changedid(1)}>
                         <Image
                           src={changedproduct.image_src}
                           alt=""
@@ -104,10 +92,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                   ) : (
                     <>
                       {" "}
-                      <CardContent
-                        className="items-center justify-center"
-                        onClick={() => changedid(1)}
-                      >
+                      <CardContent className="items-center justify-center"  onClick={() => changedid(1)}>
                         <Image
                           src={product[1].image_src}
                           alt=""
@@ -118,40 +103,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                     </>
                   )}
                 </div>
-                <div>
-                  {changedproduct.image_src != undefined &&
-                  changedproducttype == "shoe" ? (
-                    <>
-                      {" "}
-                      <CardContent
-                        className="items-center justify-center"
-                        onClick={() => changedid(2)}
-                      >
-                        <Image
-                          src={changedproduct.image_src}
-                          alt=""
-                          width={100}
-                          height={100}
-                        />
-                      </CardContent>
-                    </>
-                  ) : (
-                    <>
-                      {" "}
-                      <CardContent
-                        className="items-center justify-center"
-                        onClick={() => changedid(2)}
-                      >
-                        <Image
-                          src={product[2].image_src}
-                          alt=""
-                          width={100}
-                          height={100}
-                        />
-                      </CardContent>
-                    </>
-                  )}
-                </div>
+              
 
                 {/* <CardFooter>
                 <div className="flex gap-5">
@@ -170,11 +122,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
               </CardFooter> */}
               </Card>
             </div>
-            <div
-              className={`basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ${
-                show ? <></> : "hidden"
-              } `}
-            >
+            <div className={`basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ${show?<></>:"hidden"} `}>
               <Tabs defaultValue="account" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="account">Suggested Product</TabsTrigger>
@@ -183,40 +131,32 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                 <TabsContent value="account">
                   <Card>
                     <CardContent className="pt-10">
-                      {changedproduct.image_src != "undefined" ? (
-                        <>
-                          {(changedproducttype == "topwear" && id == 0) ||
-                          (changedproducttype == "bottomwear" && id == 1) ||
-                          (changedproducttype == "shoes" && id == 2) ? (
-                            <>
-                              <Image
-                                src={changedproduct.image_src}
-                                alt=""
-                                width={500}
-                                height={500}
-                              />
-                            </>
-                          ) : (
-                            <>
-                              <Image
-                                src={product[id].image_src}
-                                alt=""
-                                width={500}
-                                height={500}
-                              />
-                            </>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          <Image
-                            src={product[id].image_src}
-                            alt=""
-                            width={500}
-                            height={500}
-                          />
-                        </>
-                      )}
+                    
+                      {changedproduct.image_src != "undefined"?
+                      <>
+                      {((changedproducttype == "topwear"&&id==0 )||(changedproducttype == "jeans"&&id ==1) )?<>
+                      <Image
+                        src={changedproduct.image_src}
+                        alt=""
+                        width={500}
+                        height={500}
+                      />
+                      </>:<>
+                      <Image
+                        src={product[id].image_src}
+                        alt=""
+                        width={500}
+                        height={500}
+                      />
+                      </>}
+                      </>:<>
+                      <Image
+                        src={product[id].image_src}
+                        alt=""
+                        width={500}
+                        height={500}
+                      />
+                      </>}
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -278,4 +218,4 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
   );
 };
 
-export default Avatar;
+export default Avatarwomen;

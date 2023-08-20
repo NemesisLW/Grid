@@ -11,6 +11,7 @@ import HeroBanner from "@/components/HeroBanner";
 import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
 import { useState } from "react";
+import Chatwomen from "./Chatwomen";
 
 const Landing = () => {
   const [gender, setgender] = useState("men");
@@ -24,6 +25,7 @@ const Landing = () => {
   return (
     <div>
       <Header gender={gender} changegender={changegender} />
+      {/* <HeroBanner /> */}
       <Carousel />
       <Wrapper>
         {/* heading and paragaph start */}
@@ -32,11 +34,17 @@ const Landing = () => {
             Gearing up for Diwali with your personalised taste.
           </div>
         </div>{" "}
-        <div className="text-md md:text-xl max-h-20">
-          <Link href="/avatar">
+        <div className="text-md md:text-xl  flex flex-row">
+          <Link href="/avatar/men">
             <div>
               {/* <Avatar/> */}
               <Chatpage show={false} gender={gender} />
+            </div>
+          </Link>
+          <Link href="/avatar/women">
+            <div>
+              {/* <Avatar/> */}
+              <Chatwomen show={false} gender="women" />
             </div>
           </Link>
         </div>
