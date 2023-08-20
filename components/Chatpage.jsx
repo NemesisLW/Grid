@@ -2,38 +2,110 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import Chat from "./Chat";
-import { item } from "@/constants";
 import { db } from "@/Firebase.config";
 import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
-
+import { mensformalpantblack } from "@/constants/MensFormalPantsBlack";
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
+import ChatBubble from "./ChatBubble";
 
-const Chatpage = () => {
-  console.log(item);
-  // const items = useStore.getState().filter;
-  const [currentRequest, setCurrentRequest] = useState(
-    useStore.getState().currentRequest
-  );
+const Chatpage = ({ show, gender }) => {
+  const [userRequest, setUserRequest] = useState("");
+  const [filter, setFilter] = useState([]);
+  const [changedproductype, setchangedproducttype] = useState("");
+  const [Gender, setGender] = useState("men");
 
   const callSuggestionLLM = async () => {
+    const currentUserRequest = useStore.getState().currentRequest;
     const response = await fetch("/api/find", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ currentRequest }),
+      body: JSON.stringify({ currentUserRequest }),
     });
 
     const data = await response.json();
-    const filterJSON = data.filter;
+
+    let filterJSON = JSON.parse(data.filter);
     console.log(filterJSON);
+
+    setchangedproducttype(filterJSON.outfit_type);
+    try {
+      if (filterJSON.color == "any" || filterJSON.color == "undefined") {
+        const querySnapshotforchangedproducts = await getDocs(
+          collection(db, `filpkartproducts/${gender}/topwear/color/blue`)
+        );
+        querySnapshotforchangedproducts.forEach((doc) => {
+          const brand = "brand";
+
+          const color = doc.data().color;
+          const description = doc.data().description;
+          const image_src = doc.data().image_src;
+          const link = doc.data().link;
+          const price = doc.data().price;
+          const review = "4.2";
+
+          const size = doc.data().size;
+          const type = doc.data().product_type;
+          Product.push({
+            id: doc.id,
+            brand: brand,
+            color: color,
+            description: description,
+            image_src: image_src,
+            link: link,
+            price: price,
+            review: review,
+            size: size,
+            type: type,
+          });
+        });
+        setproduct(Product);
+        console.log(Product);
+      } else {
+        const querySnapshotforchangedproducts = await getDocs(
+          collection(
+            db,
+            `filpkartproducts/${gender}/${filterJSON.outfit_type}/color/${filterJSON.color}`
+          )
+        );
+        querySnapshotforchangedproducts.forEach((doc) => {
+          const brand = "brand";
+          const color = doc.data().color;
+          const description = doc.data().description;
+          const image_src = doc.data().image_src;
+          const link = doc.data().link;
+          const price = doc.data().price;
+
+          const review = "4.2";
+          const size = doc.data().size;
+          const type = doc.data().product_type;
+          Product.push({
+            id: doc.id,
+            brand: brand,
+            color: color,
+            description: description,
+            image_src: image_src,
+            link: link,
+            price: price,
+            review: review,
+            size: size,
+            type: type,
+          });
+        });
+        setproduct(Product);
+        console.log(Product);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
     const unsubscribe = useStore.subscribe(
       (newState) => {
-        setCurrentRequest(newState.currentRequest);
+        setUserRequest(newState.currentRequest);
         callSuggestionLLM();
       },
       (state) => state.currentRequest !== currentRequest
@@ -42,13 +114,13 @@ const Chatpage = () => {
     return () => {
       unsubscribe();
     };
-  }, [currentRequest]);
+  }, [useStore.getState().currentRequest]);
 
   useEffect(() => {
     fetchingproducts();
   }, []);
 
-  const [prodoct, setproduct] = useState([]);
+  const [product, setproduct] = useState([]);
   const Product = [];
   const bottowear_product = [];
   const topwear_product = [];
@@ -60,47 +132,13 @@ const Chatpage = () => {
   const [seeavatar, setavatar] = useState(false);
 
   const fetchingproducts = async () => {
-    try {
-      const q = query(
-        collection(db, `Products/men/${item.outfit_type}`),
-        where("color", "==", `${item.color}`)
-      );
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        const brand = doc.data().brand;
-        const color = doc.data().color;
-        const description = doc.data().description;
-        const image_src = doc.data().image_src;
-        const link = doc.data().link;
-        const price = doc.data().price;
-        const review = doc.data().review;
-        const size = doc.data().size;
-        const type = doc.data().type;
-        Product.push({
-          id: doc.id,
-          brand: brand,
-          color: color,
-          description: description,
-          image_src: image_src,
-          link: link,
-          price: price,
-          review: review,
-          size: size,
-          type: type,
-        });
-      });
-      setproduct(Product);
-    } catch (err) {
-      console.log(err);
-    }
+    console.log(gender);
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `Products/men/bottomwear`)
+        collection(db, `Products/${gender}/bottomwear`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -123,18 +161,16 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(bottowear_product);
       setbottomwear(bottowear_product);
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `Products/men/topwear`)
+        collection(db, `Products/${gender}/topwear`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -157,18 +193,17 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(topwear_product);
       settopwear(topwear_product);
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
+
     try {
       const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/men/shoes`)
+        collection(db, `Products/${gender}/shoes`)
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         const brand = doc.data().brand;
         const color = doc.data().color;
         const description = doc.data().description;
@@ -191,41 +226,60 @@ const Chatpage = () => {
           type: type,
         });
       });
-      console.log(shoes_product);
       setshoes(shoes_product);
-      console.log(shoes[0]);
     } catch (e) {
       console.log("Error getting cached document:", e);
     }
   };
-  if (topwear != [] && bottomwear != [] && shoes != []) {
+  if (
+    topwear != [] &&
+    bottomwear != [] &&
+    shoes != [] &&
+    topwear != "undefined" &&
+    bottomwear != "undefined" &&
+    shoes != "undefined"
+  ) {
     allproducts.push(topwear[0], bottomwear[0], shoes[0]);
   }
 
-  console.log(allproducts);
   const [changedproductforchat, setchangedproductforchat] = useState([]);
   const setProduct = (product) => {
     setchangedproductforchat(product);
   };
+  const [showed, setshowed] = useState(false);
+  const onshowed = () => {
+    setshowed(!showed);
+  };
   return (
-    <div className="flex min-h-screen bg-slate-50 items-center justify-center">
-      <Avatar product={allproducts} changedproduct={changedproductforchat} />
-      {/* <button
-    //     // onclick={setavatar(true)}
-    //     className={`${
-    //       seeavatar ? "hidden" : ""
-    //     } block bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-500/50 rounded-lg px-4`}
-    //   >
-    //     Change Avatar
-    //   </button> */}
-      {/* <div className={`${
-          seeavatar ? "" : "hidden"
-        }`
-        }> */}
-      <Chat products={prodoct} setProduct={setProduct} />
+    <div
+      className={`flex  bg-slate-50  ${
+        show ? "min-h-screen items-center justify-center" : <></>
+      } `}
+    >
+      <Avatar
+        show={show}
+        product={allproducts}
+        changedproduct={changedproductforchat}
+        changedproducttype={changedproductype}
+      />
+      <button onClick={onshowed}>
+        {" "}
+        <ChatBubble />
+      </button>
+      {show ? (
+        <>
+          {showed ? (
+            <>
+              <Chat products={product} setProduct={setProduct} />
+            </>
+          ) : (
+            <></>
+          )}{" "}
+        </>
+      ) : (
+        <></>
+      )}
     </div>
-
-    // </div>
   );
 };
 

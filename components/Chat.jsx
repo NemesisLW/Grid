@@ -10,17 +10,68 @@ import {
 
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import Combobox from "./Combobox";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ScrollArea } from "./ui/scroll-area";
 
+import "regenerator-runtime/runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { v4 as uuidv4 } from 'uuid';
 import { useChat } from "ai/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useStore } from "@/store/store";
+import { Mic } from "lucide-react";
 
-const Chat = ({ products, setProduct }) => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+const Chat = ({ products, setProduct  }) => {
+  // Streaming AI Primary Response
+  const {
+    messages,
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+  } = useChat();
 
+  // Voice Recognition
+  const [transcribing, setTranscribing] = useState(true);
+  const [clearTranscriptOnListen, setClearTranscriptOnListen] = useState(true);
+  const toggleTranscribing = () => setTranscribing(!transcribing);
+  const toggleClearTranscriptOnListen = () =>
+    setClearTranscriptOnListen(!clearTranscriptOnListen);
+
+  const {
+    transcript,
+    interimTranscript,
+    finalTranscript,
+    resetTranscript,
+    listening,
+    browserSupportsSpeechRecognition,
+    isMicrophoneAvailable,
+  } = useSpeechRecognition({ transcribing, clearTranscriptOnListen });
+
+  const startListening = () => {
+    if (!browserSupportsSpeechRecognition) {
+      return <span>Browser does not support speech recognition.</span>;
+    }
+    if (!isMicrophoneAvailable) {
+      return <span>Please allow access to the microphone</span>;
+    }
+    SpeechRecognition.startListening({ continuous: true });
+  };
+  useEffect(() => {
+    if (interimTranscript !== "") {
+      console.log("Got interim result:", interimTranscript);
+    }
+    if (finalTranscript !== "") {
+      setInput(finalTranscript);
+    }
+  }, [interimTranscript, finalTranscript]);
+
+  // Get the Latest Request by the User to initiate Search
   const latestUserReq = messages
     .slice()
     .reverse()
@@ -36,6 +87,15 @@ const Chat = ({ products, setProduct }) => {
     setSelectedImage(product);
     setProduct(product);
   };
+
+  // Suggested queries
+  const [selectedQuery, setSelectedQuery] = useState("");
+
+  const handleQuerySelect = (selectedValue) => {
+    setSelectedQuery(selectedValue);
+    setInput(selectedValue);
+  };
+
   return (
     <Card className="w-[500px] mt-3">
       <CardHeader>
@@ -76,20 +136,27 @@ const Chat = ({ products, setProduct }) => {
                 <div>
                   {message.role === "assistant" && (
                     <div className="flex ">
-                      {products.map((product) => (
+
+                      {products.slice(0, 4).map((product) => (
                         <div
-                          key={product.image_src}
+                        key={uuidv4()}
                           className={`image-container ${
                             selectedImage === product ? "selected" : ""
                           }`}
                           onClick={() => handleImageClick(product)}
                         >
-                          <Image
+                          {
+                            // product.description?<>
+                             <Image
                             alt=""
                             src={product.image_src}
                             width={100}
                             height={100}
+                          //  */}
                           />
+                        
+                          }
+                         
                           {selectedImage === product && (
                             <div className="tick-mark">&#10003;</div>
                           )}
@@ -104,6 +171,12 @@ const Chat = ({ products, setProduct }) => {
         </ScrollArea>
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-2">
+        <div className="flex flex-row w-full justify-between">
+          <Combobox
+            selectedQuery={selectedQuery}
+            onQuerySelect={handleQuerySelect}
+          />
+        </div>
         <form className="space-x-2 w-full flex gap-2" onSubmit={handleSubmit}>
           <Input
             placeholder="Don't like something? let me find something else for you.."
@@ -115,6 +188,16 @@ const Chat = ({ products, setProduct }) => {
             className="bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/50"
           >
             Send
+          </Button>
+          <Button
+            variant="mic"
+            onTouchStart={startListening}
+            onMouseDown={startListening}
+            onTouchEnd={SpeechRecognition.stopListening}
+            onMouseUp={SpeechRecognition.stopListening}
+            className={listening ? "bg-blue-800" : "bg-blue-600"}
+          >
+            <Mic />
           </Button>
         </form>
       </CardFooter>

@@ -1,0 +1,71 @@
+body {
+    align-items:end;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+  .chat {
+    display: flex;
+    position: relative;
+  }
+  .background {
+    background-color: #1950ff;
+    border-radius: 50%;
+    box-shadow: 0 2.1px 1.3px rgba(0, 0, 0, 0.044),
+      0 5.9px 4.2px rgba(0, 0, 0, 0.054), 0 12.6px 9.5px rgba(0, 0, 0, 0.061),
+      0 25px 20px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 80px;
+  }
+  .move-down {
+  transform: translateY(50px);
+}
+  .chat-bubble {
+    cursor: pointer;
+    position: relative;
+  }
+  .bubble {
+    transform-origin: 50%;
+    transition: transform 500ms cubic-bezier(0.17, 0.61, 0.54, 0.9);
+  }
+  .line {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.75;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line1 {
+    stroke-dasharray: 60 90;
+    stroke-dashoffset: -20;
+  }
+  .line2 {
+    stroke-dasharray: 67 87;
+    stroke-dashoffset: -18;
+  }
+  .circle {
+    fill: #ffffff;
+    stroke: none;
+    transform-origin: 50%;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .active .bubble {
+    transform: translateX(24px) translateY(4px) rotate(45deg);
+  }
+  .active .line1 {
+    stroke-dashoffset: 21;
+  }
+  .active .line2 {
+    stroke-dashoffset: 30;
+  }
+  .active .circle {
+    transform: scale(0);
+  }
+  
+
+  .move-down {
+    transform: translateY(50px);
+  }
