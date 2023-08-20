@@ -20,8 +20,7 @@
     ·
     <a href="https://youtu.be/qGSLy1Aqc8g">Proof of Concept</a>
     ·
-    <a href="https://flipkart-genfashionai.vercel.app">Hosted Link</a>
-    
+    <a href="https://github.com/NemesisLW/Grid/issues">Suggest Improvements & Features</a>
   </p>
 </div>
 
