@@ -169,7 +169,7 @@ const Chatpage = ({ show, gender }) => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `filpkartproducts/${gender}/topwear/color/black`)
+        collection(db, `filpkartproducts/${gender}/topwear/color/white`)
       );
 
       querySnapshotfortopwear.forEach((doc) => {

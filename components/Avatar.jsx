@@ -70,7 +70,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                     <>
                       {" "}
                       <CardContent
-                        className="items-center h-[150px] justify-center"
+                        className="items-center justify-center"
                         onClick={() => changedid(0)}
                       >
                         <Image
