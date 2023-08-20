@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
@@ -18,9 +18,9 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
-
+  
   const [total, setTotal] = useState(0);
-
+  
   useEffect(() => {
     if (product && product.length > 0) {
       const totalPrice = product.reduce(
@@ -35,12 +35,15 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
 
   return (
     <>
-      <div className={`flex w-[1000px]  flex-row mx-10 items-center `}>
+      <div className={`flex w-[600px]  flex-row mx-10 items-center `}>
         {product[0] != undefined &&
         product[1] != undefined &&
         product[2] != undefined ? (
+        
           <div className="flex flex-row">
+           
             <div className="basis-1/6 mx-0  h-[450px] w-[250px] ">
+  
               <Card className="py-16">
                 {changedproduct.image_src != undefined &&
                 changedproducttype == "topwear" ? (
@@ -141,7 +144,13 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
               </Card>
             </div>
             <div className="basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ">
-              <Card>
+            <Tabs defaultValue="account" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="account">Suggested Product</TabsTrigger>
+            <TabsTrigger value="password">Price</TabsTrigger>
+          </TabsList>
+          <TabsContent value="account">
+          <Card>
                 <CardContent className="pt-10">
                   <Image
                     src={product[0].image_src}
@@ -151,8 +160,9 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
                   />
                 </CardContent>
               </Card>
-            </div>
-            {show ? (
+            </TabsContent>
+          <TabsContent value="password">
+          {show ? (
               <div className="w-[400px]">
                 {product[0] != undefined &&
                 product[1] != undefined &&
@@ -195,6 +205,11 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
             ) : (
               <></>
             )}
+            </TabsContent>
+        </Tabs>
+             
+            </div>
+           
           </div>
         ) : (
           <>
@@ -202,78 +217,7 @@ const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
           </>
         )}
 
-        {/* <Card>
-          <CardHeader>
-            <CardTitle className="text-blue-600 font-title ">
-              Bottomwear
-            </CardTitle>
-          </CardHeader>
-          {product ? (
-            <>
-              <CardContent className="items-center justify-center">
-                <Image
-                alt=""
-                  src={product.image_src}
-                  width={100}
-                  height={100}
-                />
-              </CardContent>
-              <CardFooter>
-                <div className="flex gap-5">
-                  <button
-                    onClick={handlehandleproductchangeforbottomwwear}
-                    className="bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/50 rounded-lg px-4"
-                  >
-                    Change
-                  </button>
-
-                  {/* <Button>
-                    <Link href={product.link}>
-                      See full product detailas
-                    </Link>{" "}
-                  </Button> */}
-        {/* </div>
-              </CardFooter>
-            </>
-          ) : (
-            <>
-              <Loader2 className="mr-6 h-16 w-16 animate-spin" />
-            </>
-          )}
-        </Card> */}
-        {/* <Card>
-          <CardHeader>
-            <CardTitle className="text-blue-600 font-title ">Shoe</CardTitle>
-          </CardHeader>
-          {shoes[shoeid] ? (
-            <>
-              <CardContent className="items-center justify-center">
-                <Image src={shoes[shoeid].image_src}  alt="" width={100} height={100} />
-              </CardContent>
-              <CardFooter>
-                <div className="flex gap-5">
-                  <button
-                    onClick={handlehandleproductchangeforshoe}
-                    className="bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/50 rounded-lg px-4"
-                  >
-                    Change
-                  </button>
-
-                  <Button>
-                    {" "}
-                    <Link href={shoes[shoeid].link}>
-                      See full product details
-                    </Link>
-                  </Button>
-                </div>
-              </CardFooter>
-            </>
-          ) : (
-            <>
-              <Loader2 className="mr-6 h-16 w-16 animate-spin" />
-            </>
-          )}
-        </Card> */}
+       
       </div>
     </>
   );

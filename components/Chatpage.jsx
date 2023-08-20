@@ -264,17 +264,17 @@ const Chatpage = ({ show, gender }) => {
       />
       <button onClick={onshowed}>
         {" "}
-        <ChatBubble />
+        {/* <ChatBubble /> */}
       </button>
       {show ? (
         <>
-          {showed ? (
-            <>
+          {/* {showed ? (
+            <> */}
               <Chat products={product} setProduct={setProduct} />
-            </>
+            {/* </>
           ) : (
             <></>
-          )}{" "}
+          )}{" "} */}
         </>
       ) : (
         <></>
