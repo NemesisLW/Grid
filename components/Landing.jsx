@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+
 import Link from "next/link";
 
 import Avatar from "@/components/Avatar";
@@ -25,11 +24,10 @@ const Landing = () => {
   return (
     <div>
       <Header gender={gender} changegender={changegender} />
-      {/* <HeroBanner /> */}
       <Carousel />
       <Wrapper>
         {/* heading and paragaph start */}
-        <div className="text-center -mx-10 my-[50px] md:my-[80px]">
+        <div className="text-center -mx-10  md:my-[80px]">
           <div className="text-left text-[28px] md:text-[28px] mb-5 font-semibold leading-tight">
             Gearing up for Diwali with your personalised taste.
           </div>

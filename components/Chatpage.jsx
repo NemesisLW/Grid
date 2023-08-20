@@ -251,30 +251,17 @@ const Chatpage = ({ show, gender }) => {
     setshowed(!showed);
   };
   return (
-    <div
-      className={`flex  bg-slate-50  ${
-        show ? "min-h-screen items-center justify-center" : <></>
-      } `}
-    >
+    <div className="flex bg-slate-50  min-h-screen items-center justify-center">
       <Avatar
         show={show}
         product={allproducts}
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
       />
-      <button onClick={onshowed}>
-        {" "}
-        {/* <ChatBubble /> */}
-      </button>
+      <button onClick={onshowed}> {/* <ChatBubble /> */}</button>
       {show ? (
         <>
-          {/* {showed ? (
-            <> */}
-              <Chat products={product} setProduct={setProduct} />
-            {/* </>
-          ) : (
-            <></>
-          )}{" "} */}
+          <Chat products={product} setProduct={setProduct} />
         </>
       ) : (
         <></>

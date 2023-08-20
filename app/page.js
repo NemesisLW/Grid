@@ -1,6 +1,6 @@
 import Landing from "@/components/Landing";
 
-const page = (products) => {
+const page = () => {
   return <Landing />;
 };
 
