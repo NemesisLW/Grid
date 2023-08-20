@@ -240,6 +240,9 @@ const Chatpage = ({ show, gender }) => {
     shoes != "undefined"
   ) {
     allproducts.push(topwear[0], bottomwear[0], shoes[0]);
+    // const Total = topwear[0].price+bottomwear[0].price+shoes[0].price
+    // settotal(Total)
+    console.log(topwear[0]);
   }
 
   const [changedproductforchat, setchangedproductforchat] = useState([]);
