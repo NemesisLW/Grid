@@ -3,7 +3,7 @@ import Chatpage from "@/components/Chatpage";
 const page = () => {
   return (
     <div>
-      <Chatpage />
+      <Chatpage show={true} gender="men" />
     </div>
   );
 };

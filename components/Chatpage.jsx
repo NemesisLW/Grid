@@ -7,12 +7,15 @@ import { doc, getDocFromCache, getDocs, collection } from "firebase/firestore";
 import { mensformalpantblack } from "@/constants/MensFormalPantsBlack";
 import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
+import ChatBubble from "./ChatBubble";
 
-const Chatpage = () => {
+const Chatpage = ({show ,gender}) => {
+
   const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
   const [changedproductype, setchangedproducttype] = useState("");
-
+   const [Gender ,setGender] =useState("men")
+   
   const callSuggestionLLM = async () => {
     const currentUserRequest = useStore.getState().currentRequest;
     const response = await fetch("/api/find", {
@@ -32,7 +35,7 @@ const Chatpage = () => {
     try {
       if (filterJSON.color == "any" || filterJSON.color == "undefined") {
         const querySnapshotforchangedproducts = await getDocs(
-          collection(db, `filpkartproducts/men/topwear/color/blue`)
+          collection(db, `filpkartproducts/${gender}/topwear/color/blue`)
         );
         querySnapshotforchangedproducts.forEach((doc) => {
           const brand = "brand";
@@ -65,7 +68,8 @@ const Chatpage = () => {
         const querySnapshotforchangedproducts = await getDocs(
           collection(
             db,
-            `filpkartproducts/men/${filterJSON.outfit_type}/color/${filterJSON.color}`
+            `filpkartproducts/${gender}/${filterJSON.outfit_type}/color/${filterJSON.color}`
+
           )
         );
         querySnapshotforchangedproducts.forEach((doc) => {
@@ -130,9 +134,10 @@ const Chatpage = () => {
   const [seeavatar, setavatar] = useState(false);
 
   const fetchingproducts = async () => {
+    console.log(gender)
     try {
       const querySnapshotforboottomwear = await getDocs(
-        collection(db, `Products/men/bottomwear`)
+        collection(db, `Products/${gender}/bottomwear`)
       );
 
       querySnapshotforboottomwear.forEach((doc) => {
@@ -164,7 +169,8 @@ const Chatpage = () => {
     }
     try {
       const querySnapshotfortopwear = await getDocs(
-        collection(db, `Products/men/topwear`)
+        collection(db, `Products/${gender}/topwear`)
+
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -197,7 +203,8 @@ const Chatpage = () => {
 
     try {
       const querySnapshotfortopshoes = await getDocs(
-        collection(db, `Products/men/shoes`)
+        collection(db, `Products/${gender}/shoes`)
+
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
@@ -236,14 +243,28 @@ const Chatpage = () => {
   const setProduct = (product) => {
     setchangedproductforchat(product);
   };
+  const [showed,setshowed] =useState(false)
+  const onshowed =()=>{
+    setshowed(!showed)
+  }
   return (
-    <div className="flex min-h-screen bg-slate-50 items-center justify-center">
+    <div className={`flex  bg-slate-50  ${show?"min-h-screen items-center justify-center":<></>} `}>
+       
       <Avatar
+        show={show}
         product={allproducts}
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
+        
       />
-      <Chat products={product} setProduct={setProduct} />
+      <button onClick={onshowed}> <ChatBubble/></button>
+      {show?<>{
+        showed?<>
+        <Chat products={product} setProduct={setProduct} />
+        </>:<></>
+      } </>
+      :<></>}
+     
     </div>
   );
 };

@@ -14,127 +14,105 @@ import {
 import Image from "next/image";
 import { query, where, orderBy, limit } from "firebase/firestore";
 
-const Avatar = ({ product, changedproduct, changedproducttype }) => {
+const Avatar = ({ show, product, changedproduct, changedproducttype }) => {
   useEffect(() => {
     // fetchingproducts();
   }, []);
   console.log(changedproducttype);
-  const bottowear_product = [];
-  const topwear_product = [];
-  const shoes_product = [];
-  const [bottomwear, setbottomwear] = useState([]);
-  const [topwear, settopwear] = useState([]);
-  const [shoes, setshoes] = useState([]);
-  const [topwearid, settopwearid] = useState(0);
-  const [bottomwearid, setbottomwearid] = useState(0);
-  const [shoeid, setshoewearid] = useState(0);
+      
   const [total, settotal] = useState(0);
-
-  const handlehandleproductchangefortopwear = () => {
-    settopwearid(Math.floor(Math.random() * 4));
-  };
-  const handlehandleproductchangeforbottomwwear = () => {
-    setbottomwearid(Math.floor(Math.random() * 4));
-  };
-  const handlehandleproductchangeforshoe = () => {
-    setshoewearid(Math.floor(Math.random() * 3));
-  };
-
+   
   return (
     <>
-      <div className="flex w-[400px] flex-col mx-20 items-center">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-blue-600 text-center">
-              Your Avatar
-            </CardTitle>
-          </CardHeader>
-          {product[0] != undefined &&
-          product[1] != undefined &&
-          product[2] != undefined ? (
-            <div className="flex h-[150px] w-[400px]">
-              {changedproduct.image_src != undefined &&
-              changedproducttype == "topwear" ? (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={changedproduct.image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={product[0].image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              )}
+      <div className={`flex w-[1000px]  flex-row mx-10 items-center `}>
+        {product[0] != undefined &&
+        product[1] != undefined &&
+        product[2] != undefined ? (
+          <div className="flex flex-row">
+            <div className="basis-1/6 mx-0  h-[450px] w-[250px] ">
+              <Card className="py-16">
+                {changedproduct.image_src != undefined &&
+                changedproducttype == "topwear" ? (
+                  <>
+                    {" "}
+                    <CardContent className="items-center h-[150px] justify-center">
+                      <Image
+                        src={changedproduct.image_src}
+                        alt=""
+                        width={400}
+                        height={400}
+                      />
+                    </CardContent>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <CardContent className="items-center h-[150px] w-[130px] justify-center">
+                      <Image
+                        src={product[0].image_src}
+                        alt=""
+                        width={200}
+                        height={200}
+                      />
+                    </CardContent>
+                  </>
+                )}
 
-              {changedproduct.image_src != undefined &&
-              changedproducttype == "bottomwear" ? (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={changedproduct.image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={product[1].image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              )}
+                {changedproduct.image_src != undefined &&
+                changedproducttype == "bottomwear" ? (
+                  <>
+                    {" "}
+                    <CardContent className="items-center justify-center">
+                      <Image
+                        src={changedproduct.image_src}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                    </CardContent>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <CardContent className="items-center justify-center">
+                      <Image
+                        src={product[1].image_src}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                    </CardContent>
+                  </>
+                )}
 
-              {changedproduct.image_src != undefined &&
-              changedproducttype == "shoe" ? (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={changedproduct.image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <CardContent className="items-center justify-center">
-                    <Image
-                      src={product[2].image_src}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                  </CardContent>
-                </>
-              )}
+                {changedproduct.image_src != undefined &&
+                changedproducttype == "shoe" ? (
+                  <>
+                    {" "}
+                    <CardContent className="items-center justify-center">
+                      <Image
+                        src={changedproduct.image_src}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                    </CardContent>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <CardContent className="items-center justify-center">
+                      <Image
+                        src={product[2].image_src}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                    </CardContent>
+                  </>
+                )}
 
-              {/* <CardFooter>
+                {/* <CardFooter>
                 <div className="flex gap-5">
                   <button
                     onClick={handlehandleproductchangefortopwear}
@@ -149,13 +127,95 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
                   </Button>
                 </div>
               </CardFooter> */}
+              </Card>
             </div>
-          ) : (
-            <>
-              <Loader2 className="mr-6 h-16 w-16 animate-spin" />
-            </>
-          )}
-        </Card>
+            <div className="basis-5/6 h-[500px] flex items-center justify-between w-[300px] mx-10 ">
+              <Card>
+                <CardContent className="pt-10">
+                  <Image
+                    src={product[0].image_src}
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
+                </CardContent>
+              </Card>
+            </div>
+            {show ? (
+              <>
+                <div className="w-[400px]">
+                  {product[0] != undefined &&
+                  product[1] != undefined &&
+                  product[2] != undefined ? (
+                    <>
+                      <div className="w-[400px] rounded-md p-6">
+                        <h2 className="text-xl font-semibold mb-4">
+                          Product Prices
+                        </h2>
+
+                        {product.map((productcard, index) =>{ 
+                         
+                        
+                        //   return 
+                        //   (
+                        
+                          
+                        //   <div key={index} className="mb-2">
+                        //     <p className="text-gray-600 mb-1">
+                        //       {productcard.description}
+                        //     </p>
+                        //     <p className="text-lg font-semibold">
+                        //       ${productcard.price}
+                        //     </p>
+                        //   </div>
+                        // )
+                      }
+                        )}
+                        {product.map((productcard, index) =>{ 
+                          
+                        
+                        
+                          
+                          <div key={index} className="mb-2">
+                            <p className="text-gray-600 mb-1">
+                              {productcard.description}
+                            </p>
+                            <p className="text-lg font-semibold">
+                              ${productcard.price}
+                            </p>
+                          </div>
+                        
+                      }
+                        )}
+                        <hr className="my-3" />
+                        <p className="text-xl font-semibold mb-2">
+                          Total Price: $0
+                        </p>
+                        <p className="text-green-600 text-sm">
+                  You can get a 15% discount if you buy all these products together!
+                </p>
+                <p className="text-xl font-semibold mt-2">
+                  Discounted Price: ${total - total * 0.15}
+                </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <Loader2 className="mr-6 h-16 w-16 animate-spin" />
+                    </>
+                  )}
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        ) : (
+          <>
+            <Loader2 className="mr-6 h-16 w-16 animate-spin" />
+          </>
+        )}
+
         {/* <Card>
           <CardHeader>
             <CardTitle className="text-blue-600 font-title ">
@@ -228,35 +288,6 @@ const Avatar = ({ product, changedproduct, changedproducttype }) => {
             </>
           )}
         </Card> */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-blue-600 font-title text-center ">
-              Price
-            </CardTitle>
-          </CardHeader>
-          {product[0] != undefined &&
-          product[1] != undefined &&
-          product[2] != undefined ? (
-            <>
-              <CardContent className="items-center justify-center">
-                <h3>
-                  {product[0]?.description}:{product[0].price}
-                </h3>
-                <h3>
-                  `{product[1]?.description}:{product[1].price}
-                </h3>
-                <h3>
-                  {product[2]?.description}:{product[2].price}
-                </h3>
-                <h3>Total:{total}</h3>
-              </CardContent>
-            </>
-          ) : (
-            <>
-              <Loader2 className="mr-6 h-16 w-16 animate-spin" />
-            </>
-          )}
-        </Card>
       </div>
     </>
   );
