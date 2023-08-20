@@ -9,13 +9,12 @@ import { query, where, orderBy, limit } from "firebase/firestore";
 import { useStore } from "@/store/store";
 import ChatBubble from "./ChatBubble";
 
-const Chatpage = ({show ,gender}) => {
-
+const Chatpage = ({ show, gender }) => {
   const [userRequest, setUserRequest] = useState("");
   const [filter, setFilter] = useState([]);
   const [changedproductype, setchangedproducttype] = useState("");
-   const [Gender ,setGender] =useState("men")
-   
+  const [Gender, setGender] = useState("men");
+
   const callSuggestionLLM = async () => {
     const currentUserRequest = useStore.getState().currentRequest;
     const response = await fetch("/api/find", {
@@ -69,7 +68,6 @@ const Chatpage = ({show ,gender}) => {
           collection(
             db,
             `filpkartproducts/${gender}/${filterJSON.outfit_type}/color/${filterJSON.color}`
-
           )
         );
         querySnapshotforchangedproducts.forEach((doc) => {
@@ -134,7 +132,7 @@ const Chatpage = ({show ,gender}) => {
   const [seeavatar, setavatar] = useState(false);
 
   const fetchingproducts = async () => {
-    console.log(gender)
+    console.log(gender);
     try {
       const querySnapshotforboottomwear = await getDocs(
         collection(db, `Products/${gender}/bottomwear`)
@@ -170,7 +168,6 @@ const Chatpage = ({show ,gender}) => {
     try {
       const querySnapshotfortopwear = await getDocs(
         collection(db, `Products/${gender}/topwear`)
-
       );
 
       querySnapshotfortopwear.forEach((doc) => {
@@ -204,7 +201,6 @@ const Chatpage = ({show ,gender}) => {
     try {
       const querySnapshotfortopshoes = await getDocs(
         collection(db, `Products/${gender}/shoes`)
-
       );
 
       querySnapshotfortopshoes.forEach((doc) => {
@@ -235,7 +231,14 @@ const Chatpage = ({show ,gender}) => {
       console.log("Error getting cached document:", e);
     }
   };
-  if (topwear != [] && bottomwear != [] && shoes != []) {
+  if (
+    topwear != [] &&
+    bottomwear != [] &&
+    shoes != [] &&
+    topwear != "undefined" &&
+    bottomwear != "undefined" &&
+    shoes != "undefined"
+  ) {
     allproducts.push(topwear[0], bottomwear[0], shoes[0]);
   }
 
@@ -243,28 +246,39 @@ const Chatpage = ({show ,gender}) => {
   const setProduct = (product) => {
     setchangedproductforchat(product);
   };
-  const [showed,setshowed] =useState(false)
-  const onshowed =()=>{
-    setshowed(!showed)
-  }
+  const [showed, setshowed] = useState(false);
+  const onshowed = () => {
+    setshowed(!showed);
+  };
   return (
-    <div className={`flex  bg-slate-50  ${show?"min-h-screen items-center justify-center":<></>} `}>
-       
+    <div
+      className={`flex  bg-slate-50  ${
+        show ? "min-h-screen items-center justify-center" : <></>
+      } `}
+    >
       <Avatar
         show={show}
         product={allproducts}
         changedproduct={changedproductforchat}
         changedproducttype={changedproductype}
-        
       />
-      <button onClick={onshowed}> <ChatBubble/></button>
-      {show?<>{
-        showed?<>
-        <Chat products={product} setProduct={setProduct} />
-        </>:<></>
-      } </>
-      :<></>}
-     
+      <button onClick={onshowed}>
+        {" "}
+        <ChatBubble />
+      </button>
+      {show ? (
+        <>
+          {showed ? (
+            <>
+              <Chat products={product} setProduct={setProduct} />
+            </>
+          ) : (
+            <></>
+          )}{" "}
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
