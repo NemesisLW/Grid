@@ -16,11 +16,12 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://youtube.com">View Demo</a>
+    <a href="https://youtu.be/V62s0cN6u1k">View Demo</a>
     ·
-    <a href="https://youtube.com">Proof of Concept</a>
+    <a href="https://youtu.be/qGSLy1Aqc8g">Proof of Concept</a>
     ·
-    <a href="https://github.com/NemesisLW/Grid/issues">Suggest Improvements & Features</a>
+    <a href="https://flipkart-genfashionai.vercel.app">Hosted Link</a>
+    
   </p>
 </div>
 
