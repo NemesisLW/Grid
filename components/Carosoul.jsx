@@ -21,7 +21,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-60">
+    <div className="flex items-center px-10 justify-center h-60">
        
       <div className="relative">
         <img

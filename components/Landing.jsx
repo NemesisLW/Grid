@@ -1,8 +1,7 @@
-"use client"
-import React from 'react'
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import Link from 'next/link'
+"use client";
+import React from "react";
+
+import Link from "next/link";
 
 import Avatar from "@/components/Avatar";
 import Carousel from "@/components/Carosoul";
@@ -12,46 +11,55 @@ import HeroBanner from "@/components/HeroBanner";
 import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
 import { useState } from "react";
+import Chatwomen from "./Chatwomen";
+import { Card, CardHeader } from "./ui/card";
 
 const Landing = () => {
-  const[gender ,setgender] =useState("men")
- const changegender= ()=>{
-   if(gender =="men"){
-    setgender("women")
-   }else{
-    setgender("men");
-   }
-}
+  const [gender, setgender] = useState("men");
+  const changegender = () => {
+    if (gender == "men") {
+      setgender("women");
+    } else {
+      setgender("men");
+    }
+  };
   return (
     <div>
-       <Header gender={gender} changegender={changegender}  />
+      <Header gender={gender} changegender={changegender} />
       {/* <HeroBanner /> */}
-      <Carousel/>
+      <Carousel />
       <Wrapper>
         {/* heading and paragaph start */}
-        <div className="text-center -mx-10 my-[50px] md:my-[80px]">
+        <div className="text-center -mx-10  md:my-[80px]">
           <div className="text-left text-[28px] md:text-[28px] mb-5 font-semibold leading-tight">
-            Gearing up for Diwali with your personalised taste. 
+            Your handpicked Summer Collection
           </div>
-         
-        </div> <div className="text-md md:text-xl max-h-20">
-            <Link href="/avatar">
+        </div>{" "}
+        <div className="text-md md:text-xl flex flex-row">
+          <div>
+            <Link href="/avatar/men">
+              <CardHeader className="text-center">Men</CardHeader>
               <div>
-                {/* <Avatar/> */}
                 <Chatpage show={false} gender={gender} />
               </div>
             </Link>
           </div>
-
+          <div>
+            <Link href="/avatar/women">
+              <CardHeader className="text-center">Women</CardHeader>
+              <div>
+                {/* <Avatar/> */}
+                <Chatwomen show={false} gender="women" />
+              </div>
+            </Link>
+          </div>
+        </div>
         {/* heading and paragaph end */}
-
         {/* products grid start */}
-       
         {/* products grid end */}
       </Wrapper>
-
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
